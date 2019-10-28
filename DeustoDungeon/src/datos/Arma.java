@@ -7,13 +7,7 @@ public class Arma {
 	public int buffAtkMag;
 	 
 	
-	public void ataque1() {
-		
-	}
 	
-	public void ataque2() {
-		
-	}
 	
 	
 

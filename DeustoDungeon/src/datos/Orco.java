@@ -1,6 +1,6 @@
 package datos;
 
-public class Arco extends Arma implements Atacante{
+public class Orco extends Unidad implements Atacante {
 
 	@Override
 	public void ataque1() {
@@ -13,9 +13,6 @@ public class Arco extends Arma implements Atacante{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	
 	
 
 }

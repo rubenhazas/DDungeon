@@ -11,6 +11,7 @@ public class Aliado extends Unidad{
 		this.arma= arma;
 		this.casco=casco;
 		this.pechera=pechera;
+		
 	}
 
 	public Aliado() {

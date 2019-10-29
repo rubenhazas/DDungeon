@@ -35,6 +35,8 @@ public class GestorDB {
 		stmt.setInt(7,unidad.getDefFis());
 		stmt.setInt(8,unidad.getDefMag());
 		stmt.setString(9,unidad.getPasivaRacial());
+		
+		stmt.executeUpdate();
 		System.out.println("unidad guardada");
 		
 	}

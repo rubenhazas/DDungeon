@@ -35,9 +35,6 @@ public class GestorDB {
 		stmt.setInt(7,unidad.getDefFis());
 		stmt.setInt(8,unidad.getDefMag());
 	}
-	static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

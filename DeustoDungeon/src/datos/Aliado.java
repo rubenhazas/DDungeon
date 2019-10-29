@@ -12,4 +12,34 @@ public class Aliado extends Unidad{
 		this.casco=casco;
 		this.pechera=pechera;
 	}
+
+	public Aliado() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Arma getArma() {
+		return arma;
+	}
+
+	public void setArma(Arma arma) {
+		this.arma = arma;
+	}
+
+	public Casco getCasco() {
+		return casco;
+	}
+
+	public void setCasco(Casco casco) {
+		this.casco = casco;
+	}
+
+	public Pechera getPechera() {
+		return pechera;
+	}
+
+	public void setPechera(Pechera pechera) {
+		this.pechera = pechera;
+	}
+	
 }

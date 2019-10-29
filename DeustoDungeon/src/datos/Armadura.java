@@ -8,6 +8,21 @@ public class Armadura {
 	public int buffDefFis;
 	public int buffDefMag;
 	
+	public Armadura(String nom, String descripcion, int buffVida, int buffDefFis, int buffDefMag) {
+		super();
+		this.nom = nom;
+		this.descripcion = descripcion;
+		this.buffVida = buffVida;
+		this.buffDefFis = buffDefFis;
+		this.buffDefMag = buffDefMag;
+	}
+
+	public Armadura() {
+		super();
+	}
+	
+	
+	
 	
 
 }

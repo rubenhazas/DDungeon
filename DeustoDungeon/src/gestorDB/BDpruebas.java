@@ -13,11 +13,11 @@ public class BDpruebas {
 		miDB= new GestorDB();
 		miDB.conectar();
 		Unidad unidad;
-		unidad= new Unidad();
+		
+		unidad= new Unidad("prueba","descripcion de prueba", 1, 1, 1, 100,10, 10, "prueba de pasiva" );
 		miDB.guardarUnidad(unidad);
-		
-		
-		
+		System.out.println("guardado");	
+		miDB.desconectar();
 	}
 
 }

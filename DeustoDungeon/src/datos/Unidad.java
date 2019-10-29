@@ -17,7 +17,6 @@ public class Unidad {
 
 
 	public Unidad(String nom, String descripcion,int nivel, int atkFis, int atkMag, int vida, int defFis, int defMag) {
-		super();
 		this.nom = nom;
 		this.descripcion = descripcion;
 		this.nivel = 1;

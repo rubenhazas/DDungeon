@@ -13,7 +13,7 @@ public class BDpruebas {
 		miDB.conectar();
 		Unidad unidad;
 		
-		unidad= new Unidad("prueba","descripcion de prueba", 1, 1, 1, 100,10, 10, "prueba de pasiva" );
+		unidad= new Unidad("prueba2","descripcion de prueba 2", 1, 1, 1, 100,10, 10, "prueba de pasiva 2" );
 		miDB.guardarUnidad(unidad);
 		System.out.println("guardado");	
 		miDB.desconectar();

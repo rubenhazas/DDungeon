@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import datos.Armadura;
 import datos.Casco;
+import datos.Pechera;
 import datos.Unidad;
 
 public class GestorDB {
@@ -41,17 +43,37 @@ public class GestorDB {
 		System.out.println("unidad guardada");
 		
 	}
-	public void guardarCasco(Casco casco)throws SQLException{
+	/*public void guardarCasco(Casco casco)throws SQLException{
 		String sql = "INSERT INTO casco (nombre, descripcion, buffVida, buffDefFis, buffDefMag) VALUES(?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1, casco.getNom());
-		stmt.setString(2, casco.getDescripcion());
-		stmt.setInt(3, casco.getBuffVida());
-		stmt.setInt(4, casco.getBuffDefFis());
-		stmt.setInt(5, casco.getBuffDefMag());
 		
-		stmt.executeUpdate();
-		System.out.println("casco guardado");
+	}
+	*/
+	public void guardarArmadura(Armadura armadura,String tipo) throws SQLException{
+		String sql = "INSERT INTO " +tipo+" (nombre, descripcion, buffVida, buffDefFis, buffDefMag) VALUES(?,?,?,?,?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		if(tipo=="pechera") {
+			stmt.setString(1, armadura.getNom());
+			stmt.setString(2, armadura.getDescripcion());
+			stmt.setInt(3, armadura.getBuffVida());
+			stmt.setInt(4, armadura.getBuffDefFis());
+			stmt.setInt(5, armadura.getBuffDefMag());
+			
+			stmt.executeUpdate();
+			System.out.println("pechera guardado");
+		}else if(tipo=="casco") {
+			stmt.setString(1, armadura.getNom());
+			stmt.setString(2, armadura.getDescripcion());
+			stmt.setInt(3, armadura.getBuffVida());
+			stmt.setInt(4, armadura.getBuffDefFis());
+			stmt.setInt(5, armadura.getBuffDefMag());
+			
+			stmt.executeUpdate();
+			System.out.println("casco guardado");
+		}else {
+			System.out.println("ese tipo de armadura no existe");
+		}
+		
 	}
 
 }

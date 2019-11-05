@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import datos.Arma;
 import datos.Armadura;
 import datos.Casco;
 import datos.Pechera;
@@ -58,8 +59,6 @@ public class GestorDB {
 			stmt.setInt(3, armadura.getBuffVida());
 			stmt.setInt(4, armadura.getBuffDefFis());
 			stmt.setInt(5, armadura.getBuffDefMag());
-			
-			
 		if(tipo=="pechera") {
 			stmt.executeUpdate();
 			System.out.println("pechera guardado");
@@ -70,6 +69,29 @@ public class GestorDB {
 			System.out.println("ese tipo de armadura no existe");
 		}
 		
+	}
+	
+	public void guardarArma(Arma arma, String tipo) throws SQLException {
+		String sql = "INSERT INTO "+tipo+" (nombre, descripcion, buffAtkFis, buffAtkMag) VALUES (?,?,?,?)";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+
+			stmt.setString(1, arma.getNom());
+			stmt.setString(2, arma.getDescripcion());
+			stmt.setInt(3, arma.getBuffAtkFis());
+			stmt.setInt(4, arma.getBuffAtkMag());
+		if(tipo=="baston") {
+			stmt.execute();
+			System.out.println("baston guardado");
+		}else if(tipo=="espada"){
+			stmt.execute();
+			System.out.println("espada guardada");
+		}else if(tipo=="arco") {
+			stmt.execute();
+			System.out.println("arco guardado");
+		}else {
+			System.out.println("no existe ese tipo de arma");
+		}
 	}
 
 }

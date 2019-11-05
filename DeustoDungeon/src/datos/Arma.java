@@ -13,6 +13,38 @@ public class Arma {
 		this.buffAtkFis = buffAtkFis;
 		this.buffAtkMag = buffAtkMag;
 	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public int getBuffAtkFis() {
+		return buffAtkFis;
+	}
+
+	public void setBuffAtkFis(int buffAtkFis) {
+		this.buffAtkFis = buffAtkFis;
+	}
+
+	public int getBuffAtkMag() {
+		return buffAtkMag;
+	}
+
+	public void setBuffAtkMag(int buffAtkMag) {
+		this.buffAtkMag = buffAtkMag;
+	}
 	
 	
 }

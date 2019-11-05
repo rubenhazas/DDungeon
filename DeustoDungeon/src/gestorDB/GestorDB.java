@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import datos.Casco;
 import datos.Unidad;
 
 public class GestorDB {
@@ -40,6 +41,17 @@ public class GestorDB {
 		System.out.println("unidad guardada");
 		
 	}
-	
+	public void guardarCasco(Casco casco)throws SQLException{
+		String sql = "INSERT INTO casco (nombre, descripcion, buffVida, buffDefFis, buffDefMag) VALUES(?,?,?,?,?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, casco.getNom());
+		stmt.setString(2, casco.getDescripcion());
+		stmt.setInt(3, casco.getBuffVida());
+		stmt.setInt(4, casco.getBuffDefFis());
+		stmt.setInt(5, casco.getBuffDefMag());
+		
+		stmt.executeUpdate();
+		System.out.println("casco guardado");
+	}
 
 }

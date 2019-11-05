@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 import datos.Arma;
 import datos.Armadura;
-import datos.Casco;
-import datos.Pechera;
 import datos.Unidad;
 
 public class GestorDB {

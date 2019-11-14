@@ -22,6 +22,7 @@ public class VentanaMenu {
 	/**
 	 * Launch the application.
 	 */
+	private VentanaMenu window = this;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -59,10 +60,11 @@ public class VentanaMenu {
 		crearPersonajes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaPersonaje ventanaPersonaje = new VentanaPersonaje();
+				VentanaPersonaje ventanaPersonaje = new VentanaPersonaje(window);
 				ventanaPersonaje.setVisible(true);
 				ventanaPersonaje.setResizable(false);
 				frame.dispose();
+				
 			}
 		});
 		

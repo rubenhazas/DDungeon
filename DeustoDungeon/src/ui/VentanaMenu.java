@@ -59,8 +59,10 @@ public class VentanaMenu {
 		crearPersonajes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//VentanaPersonaje ventanaPersonaje = new VentanaPersonaje();
-				
+				VentanaPersonaje ventanaPersonaje = new VentanaPersonaje();
+				ventanaPersonaje.setVisible(true);
+				ventanaPersonaje.setResizable(false);
+				frame.dispose();
 			}
 		});
 		

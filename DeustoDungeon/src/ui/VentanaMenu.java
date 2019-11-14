@@ -47,7 +47,7 @@ public class VentanaMenu {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 400);
+		frame.setBounds(400, 100, 600, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		JPanel panel = new JPanel(null);
@@ -59,8 +59,10 @@ public class VentanaMenu {
 		crearPersonajes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//VentanaPersonaje ventanaPersonaje = new VentanaPersonaje();
-				
+				VentanaPersonaje ventanaPersonaje = new VentanaPersonaje();
+				ventanaPersonaje.setVisible(true);
+				ventanaPersonaje.setResizable(false);
+				frame.dispose();
 			}
 		});
 		

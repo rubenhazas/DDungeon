@@ -7,7 +7,7 @@ public class Aliado extends Unidad{
 	public Pechera pechera;
 
 	public Aliado(String nom, String descripcion,int nivel, int atkFis, int atkMag, int vida, int defFis, int defMag,String pasivaRacial, Arma arma, Casco casco, Pechera pechera) {
-		super(nom,descripcion,nivel,atkFis,atkMag,vida,defFis,defMag,pasivaRacial);
+		super(nom,descripcion,nivel,atkFis,atkMag,vida,defFis,defMag);
 		this.arma= arma;
 		this.casco=casco;
 		this.pechera=pechera;

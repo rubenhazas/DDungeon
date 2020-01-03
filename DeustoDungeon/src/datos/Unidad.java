@@ -11,13 +11,12 @@ public class Unidad {
 	public int vida;
 	public int defFis;
 	public int defMag;
-	public String pasivaRacial;
 	
 	
 	
 
 
-	public Unidad(String nom, String descripcion,int nivel, int atkFis, int atkMag, int vida, int defFis, int defMag,String pasivaRacial) {
+	public Unidad(String nom, String descripcion,int nivel, int atkFis, int atkMag, int vida, int defFis, int defMag) {
 		this.nom = nom;
 		this.descripcion = descripcion;
 		this.nivel = 1;
@@ -26,17 +25,6 @@ public class Unidad {
 		this.vida = vida;
 		this.defFis = defFis;
 		this.defMag = defMag;
-		this.pasivaRacial= pasivaRacial;
-	}
-
-
-	public String getPasivaRacial() {
-		return pasivaRacial;
-	}
-
-
-	public void setPasivaRacial(String pasivaRacial) {
-		this.pasivaRacial = pasivaRacial;
 	}
 
 

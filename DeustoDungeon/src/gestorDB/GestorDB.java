@@ -25,8 +25,8 @@ public class GestorDB {
 		conn.close();
 	}
 	
-	public void guardarUnidad(Unidad unidad) throws SQLException {
-		String sql = "INSERT INTO unidad (nombre, descripcion, nivel, atkFis, atkMag, vida, defFis, defMag, pasivaRacial) VALUES(?,?,?,?,?,?,?,?,?)";
+	public void guardarAliado(Unidad unidad, String nombreArma, String tipoArma, String casco, String pechera) throws SQLException {
+		String sql = "INSERT INTO unidad (nombre, descripcion, nivel, atkFis, atkMag, vida, defFis, defMag, nombreArma, tipoArma, casco, pechera) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1,unidad.getNom());
 		stmt.setString(2,unidad.getDescripcion());
@@ -36,11 +36,14 @@ public class GestorDB {
 		stmt.setInt(6,unidad.getVida());
 		stmt.setInt(7,unidad.getDefFis());
 		stmt.setInt(8,unidad.getDefMag());
-		stmt.setString(9,unidad.getPasivaRacial());
+		stmt.setString(9, nombreArma);
+		stmt.setString(10, tipoArma);	
+		stmt.setString(11, casco);
+		stmt.setString(12, pechera);
 		
 		stmt.executeUpdate();
-		System.out.println("unidad guardada");
-		
+		System.out.println("aliado guardado");
+	
 	}
 	/*public void guardarCasco(Casco casco)throws SQLException{
 		String sql = "INSERT INTO casco (nombre, descripcion, buffVida, buffDefFis, buffDefMag) VALUES(?,?,?,?,?)";

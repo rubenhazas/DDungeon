@@ -1,30 +1,39 @@
 package ui;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
+
 import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Rectangle;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JButton;
+
+import gestorDB.GestorDB;
 
 public class VentanaMenu extends JFrame {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Launch the application.
 	 */
 	private VentanaMenu window = this;
+	static GestorDB miDB;
+	static Connection miConexion;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					miDB= new GestorDB();
+					miDB.conectar();
 					VentanaMenu window = new VentanaMenu();
 					window.setVisible(true);
 				} catch (Exception e) {

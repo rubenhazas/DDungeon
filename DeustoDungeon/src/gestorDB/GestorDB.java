@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.sun.net.httpserver.Authenticator.Result;
+
 
 import datos.Aliado;
 import datos.Arco;
@@ -38,7 +38,7 @@ public class GestorDB {
 	}
 	
 	public void guardarAliado(Unidad unidad, String nombreArma, String tipoArma, String casco, String pechera) throws SQLException {
-		String sql = "INSERT INTO unidad (nombre, descripcion, atkFis, atkMag, vida, defFis, defMag, nombreArma, tipoArma, casco, pechera) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO aliado (nombre, descripcion, atkFis, atkMag, vida, defFis, defMag, nombreArma, tipoArma, casco, pechera) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1,unidad.getNom());
 		stmt.setString(2,unidad.getDescripcion());

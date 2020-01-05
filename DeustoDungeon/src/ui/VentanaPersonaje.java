@@ -90,7 +90,12 @@ public class VentanaPersonaje extends JFrame {
 				Unidad unidad= new Unidad(nomt.getText(),dest.getText(),Integer.parseInt(atkFist.getText()),Integer.parseInt(atkMagt.getText())
 						,Integer.parseInt(vidat.getText()),Integer.parseInt(defFist.getText()),Integer.parseInt(defMagt.getText())); 
 				try {
-					menu.miDB.guardarAliado(unidad, nombreArmat.getText(), tipoArmat.getText(), cascot.getText(), pecherat.getText());
+					if(tipoArmat.getText()=="espada" || tipoArmat.getText()=="arco" ||tipoArmat.getText()=="baston" ) {
+						menu.miDB.guardarAliado(unidad, nombreArmat.getText(), tipoArmat.getText(), cascot.getText(), pecherat.getText());
+					}else {
+						 JOptionPane.showMessageDialog(null, "Tipo de arma incorrecta");
+					}
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

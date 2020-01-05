@@ -47,7 +47,7 @@ public class VentanaPersonaje extends JFrame {
 	public VentanaPersonaje(VentanaMenu v) {
 		VentanaMenu menu= v;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 400, 500);
+		setBounds(700,300, 400, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		JPanel panel1 = new JPanel();
@@ -86,18 +86,17 @@ public class VentanaPersonaje extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				Unidad unidad= new Unidad(nomt.getText(),dest.getText(),Integer.parseInt(atkFist.getText()),Integer.parseInt(atkMagt.getText())
+				Unidad unidad= new Unidad(nomt.getText(),dest.getText(),"humano", Integer.parseInt(atkFist.getText()),Integer.parseInt(atkMagt.getText())
 						,Integer.parseInt(vidat.getText()),Integer.parseInt(defFist.getText()),Integer.parseInt(defMagt.getText())); 
 				try {
 					if(tipoArmat.getText()=="espada" || tipoArmat.getText()=="arco" ||tipoArmat.getText()=="baston" ) {
 						menu.miDB.guardarAliado(unidad, nombreArmat.getText(), tipoArmat.getText(), cascot.getText(), pecherat.getText());
+						JOptionPane.showMessageDialog(null, "Personaje creado con exito");
 					}else {
 						 JOptionPane.showMessageDialog(null, "Tipo de arma incorrecta");
 					}
 					
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

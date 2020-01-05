@@ -9,17 +9,12 @@ import java.sql.SQLException;
 
 
 import datos.Aliado;
-import datos.Arco;
 import datos.Arma;
 import datos.Armadura;
-import datos.Baston;
 import datos.Casco;
-import datos.Espada;
-import datos.Nigromante;
-import datos.Orco;
 import datos.Pechera;
 import datos.Unidad;
-import datos.Zombie;
+
 
 public class GestorDB {
 
@@ -38,31 +33,26 @@ public class GestorDB {
 	}
 	
 	public void guardarAliado(Unidad unidad, String nombreArma, String tipoArma, String casco, String pechera) throws SQLException {
-		String sql = "INSERT INTO aliado (nombre, descripcion, atkFis, atkMag, vida, defFis, defMag, nombreArma, tipoArma, casco, pechera) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO aliado (nombre, raza, descripcion, atkFis, atkMag, vida, defFis, defMag, nombreArma, tipoArma, casco, pechera) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1,unidad.getNom());
-		stmt.setString(2,unidad.getDescripcion());
-		stmt.setInt(3,unidad.getAtkFis());
-		stmt.setInt(4,unidad.getAtkMag());
-		stmt.setInt(5,unidad.getVida());
-		stmt.setInt(6,unidad.getDefFis());
-		stmt.setInt(7,unidad.getDefMag());
-		stmt.setString(8, nombreArma);
-		stmt.setString(9, tipoArma);
-		stmt.setString(10, casco);
-		stmt.setString(11, pechera);
+		stmt.setString(2, unidad.getRaza());
+		stmt.setString(3,unidad.getDescripcion());
+		stmt.setInt(4,unidad.getAtkFis());
+		stmt.setInt(5,unidad.getAtkMag());
+		stmt.setInt(6,unidad.getVida());
+		stmt.setInt(7,unidad.getDefFis());
+		stmt.setInt(8,unidad.getDefMag());
+		stmt.setString(9, nombreArma);
+		stmt.setString(10, tipoArma);
+		stmt.setString(11, casco);
+		stmt.setString(12, pechera);
 		
 		stmt.executeUpdate();
 		
 		System.out.println("aliado guardado");
 	
 	}
-	/*public void guardarCasco(Casco casco)throws SQLException{
-		String sql = "INSERT INTO casco (nombre, descripcion, buffVida, buffDefFis, buffDefMag) VALUES(?,?,?,?,?)";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		
-	}
-	*/
 	public void guardarArmadura(Armadura armadura,String tipo) throws SQLException{
 		String sql = "INSERT INTO " +tipo+" (nombre, descripcion, buffVida, buffDefFis, buffDefMag) VALUES(?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -151,14 +141,8 @@ public class GestorDB {
 			stmt.setInt(1, i);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
-				if(rs.getString("raza")=="orco") {
-					u = new Orco();
-				}else if(rs.getString("raza")=="nigromante") {
-					u = new Nigromante();
-				}else if(rs.getString("raza")=="zombie") {
-					u = new Zombie();
-				}
 				u.setNom(rs.getString("nombre"));
+				u.setRaza(rs.getString("raza"));
 				u.setDescripcion(rs.getString("descripcion"));
 				u.setAtkFis(rs.getInt("atkFis"));
 				u.setAtkMag(rs.getInt("atkMag"));
@@ -177,14 +161,7 @@ public class GestorDB {
 
 	public Arma obtenerArma(String tipoArma, String nombreArma) throws SQLException {
 		Arma a = new Arma();
-		if(tipoArma=="espada") {
-			a = new Espada();
-		}else if(tipoArma=="arco") {
-			a = new Arco();
-		}else if(tipoArma=="baston") {
-			a= new Baston();
-		}
-		String sql = ("SELECT * FROM "+tipoArma+"WHERE nombre = ?" );
+		String sql = ("SELECT * FROM armas WHERE nombre = ?" );
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
 		try {
@@ -193,6 +170,7 @@ public class GestorDB {
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				a.setNom(rs.getString("nombre"));
+				a.setTipo(rs.getString("tipo"));
 				a.setDescripcion(rs.getString("descripcion"));
 				a.setBuffAtkFis(rs.getInt("buffAtkFis"));
 				a.setBuffAtkMag(rs.getInt("buffAtkMag"));

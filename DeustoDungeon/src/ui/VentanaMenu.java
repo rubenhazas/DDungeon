@@ -4,8 +4,10 @@ package ui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,7 @@ import java.sql.Connection;
 import javax.swing.JButton;
 
 import gestorDB.GestorDB;
+import java.awt.Font;
 
 public class VentanaMenu extends JFrame {
 
@@ -47,14 +50,14 @@ public class VentanaMenu extends JFrame {
 	 * Create the application.
 	 */
 	public VentanaMenu() {
-		window.setBounds(400, 100, 600, 400);
+		window.setBounds(700, 300, 450, 175);
 		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		window.setResizable(false);
 		JPanel panel = new JPanel(null);
-		window.add(panel);
+		window.getContentPane().add(panel);
 		
 		JButton crearPersonajes = new JButton("Crear Personaje");
-		crearPersonajes.setBounds(30, 300, 130, 30);
+		crearPersonajes.setBounds(56, 76, 130, 30);
 		panel.add(crearPersonajes);
 		crearPersonajes.addActionListener(new ActionListener() {
 			@Override
@@ -66,5 +69,23 @@ public class VentanaMenu extends JFrame {
 				
 			}
 		});	
+		JButton seleccionarPersonaje = new JButton("Seleccionar Personaje");
+		seleccionarPersonaje.setBounds(230,76,170,30);
+		panel.add(seleccionarPersonaje);
+		
+		seleccionarPersonaje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaSeleccion ventanaSeleccion = new VentanaSeleccion(window);
+				ventanaSeleccion.setVisible(true);
+				window.dispose();
+			}
+		});
+		
+		JLabel titulo = new JLabel("DeustoDungeon");
+		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		titulo.setBounds(140, 27,143,30);
+		panel.add(titulo);
 	}
 }

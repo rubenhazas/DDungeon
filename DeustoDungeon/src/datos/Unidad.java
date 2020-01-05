@@ -1,9 +1,10 @@
 package datos;
 
-public class Unidad {
+public class Unidad implements Atacante {
 	
 	public static int id;
 	public String nom;
+	public String raza;
 	public String descripcion;
 	public int atkFis;
 	public int atkMag;
@@ -11,8 +12,9 @@ public class Unidad {
 	public int defFis;
 	public int defMag;
 	
-	public Unidad(String nom, String descripcion,int atkFis, int atkMag, int vida, int defFis, int defMag) {
+	public Unidad(String nom, String raza,String descripcion,int atkFis, int atkMag, int vida, int defFis, int defMag) {
 		this.nom = nom;
+		this.raza=raza;
 		this.descripcion = descripcion;
 		this.atkFis = atkFis;
 		this.atkMag = atkMag;
@@ -110,6 +112,27 @@ public class Unidad {
 	public void setDefMag(int defMag) {
 		this.defMag = defMag;
 	}
+	
+	public String getRaza() {
+		return raza;
+	}
+
+	public void setRaza(String raza) {
+		this.raza = raza;
+	}
+	
+	
+	@Override
+	public void ataque1() {
+		
+	}
+
+	@Override
+	public void ataque2() {
+		
+	}
+
+	
 
 	
 	

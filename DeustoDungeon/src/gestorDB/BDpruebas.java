@@ -15,7 +15,7 @@ public class BDpruebas {
 		Unidad unidad;
 		
 		//unidad= new Aliado("prueba2","descripcion de prueba 2", 1, 1, 1, 100,10, 10);
-		miDB.guardarArma(new Arma("a","a",1,1), "espada");
+		miDB.guardarArma(new Arma("a","a","", 1,1), "espada");
 		System.out.println("guardado");	
 		miDB.desconectar();
 	}

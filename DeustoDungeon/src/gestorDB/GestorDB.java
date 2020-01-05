@@ -6,9 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.sun.net.httpserver.Authenticator.Result;
+
 import datos.Aliado;
+import datos.Arco;
 import datos.Arma;
 import datos.Armadura;
+import datos.Baston;
 import datos.Casco;
 import datos.Espada;
 import datos.Pechera;
@@ -133,25 +137,95 @@ public class GestorDB {
 		return a;
 	}
 	
-	public  Unidad obtenerUnidad(int i) {
+	public Unidad obtenerUnidad(int i) {
 		
 		
 		return null;
 	}
 
-	public Arma obtenerArma(String tipoArma, String nombreArma) {
-		Espada e = new Espada();
+	public Arma obtenerArma(String tipoArma, String nombreArma) throws SQLException {
+		Arma a = new Arma();
+		if(tipoArma=="espada") {
+			a = new Espada();
+		}else if(tipoArma=="arco") {
+			a = new Arco();
+		}else if(tipoArma=="baston") {
+			a= new Baston();
+		}
+		String sql = ("SELECT * FROM "+tipoArma+"WHERE nombre = ?" );
+		PreparedStatement stmt = conn.prepareStatement(sql);
 		
-		return e;
+		try {
+			stmt.setString(1, nombreArma);
+			
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				a.setNom(rs.getString("nombre"));
+				a.setDescripcion(rs.getString("descripcion"));
+				a.setBuffAtkFis(rs.getInt("buffAtkFis"));
+				a.setBuffAtkMag(rs.getInt("buffAtkMag"));
+				
+			}else {
+				return null;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}finally {
+			stmt.close();
+		}
+		return a;
 	}
 	
-	public Casco obtenerCasco( String nombreArmadura) {
+	public Casco obtenerCasco( String nombreArmadura) throws SQLException {
+		Casco c =new Casco();
 		
-		return null;
+		String sql = ("SELECT * FROM casco WHERE nombre = ?");
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		try {
+			stmt.setString(1, nombreArmadura);
+			
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				c.setNom(rs.getString("nombre"));
+				c.setDescripcion(rs.getString("descripcion"));
+				c.setBuffVida(rs.getInt("buffVida"));
+				c.setBuffDefFis(rs.getInt("buffDefFis"));
+				c.setBuffDefMag(rs.getInt("buffDefMag"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}finally {
+			stmt.close();
+		}
+		return c;
 	}
 	
-	public Pechera obtenerPechera(String nombrePechera) {
+	public Pechera obtenerPechera(String nombrePechera) throws SQLException {
+		Pechera p = new Pechera();
 		
-		return null;
+		String sql=("SELECT * FROM pechera WHERE nombre = ?");
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		try {
+			stmt.setString(1, nombrePechera);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				p.setNom(rs.getString("nombre"));
+				p.setDescripcion(rs.getString("descripcion"));
+				p.setBuffVida(rs.getInt("buffVida"));
+				p.setBuffDefFis(rs.getInt("buffDefFis"));
+				p.setBuffDefMag(rs.getInt("buffDefMag"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}finally {
+			stmt.close();
+		}
+		return p;
 	}
 }

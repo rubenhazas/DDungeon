@@ -42,6 +42,7 @@ public class GestorDB {
 		stmt.setString(12, pechera);
 		
 		stmt.executeUpdate();
+		
 		System.out.println("aliado guardado");
 	
 	}

@@ -15,8 +15,11 @@ import datos.Armadura;
 import datos.Baston;
 import datos.Casco;
 import datos.Espada;
+import datos.Nigromante;
+import datos.Orco;
 import datos.Pechera;
 import datos.Unidad;
+import datos.Zombie;
 
 public class GestorDB {
 
@@ -137,10 +140,39 @@ public class GestorDB {
 		return a;
 	}
 	
-	public Unidad obtenerUnidad(int i) {
+	public Unidad obtenerUnidad(int i) throws SQLException {
 		
+		Unidad u = new Unidad(); 
 		
-		return null;
+		String sql =("SELECT * FROM unidad WHERE index = ?");
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		try {
+			stmt.setInt(1, i);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("raza")=="orco") {
+					u = new Orco();
+				}else if(rs.getString("raza")=="nigromante") {
+					u = new Nigromante();
+				}else if(rs.getString("raza")=="zombie") {
+					u = new Zombie();
+				}
+				u.setNom(rs.getString("nombre"));
+				u.setDescripcion(rs.getString("descripcion"));
+				u.setAtkFis(rs.getInt("atkFis"));
+				u.setAtkMag(rs.getInt("atkMag"));
+				u.setVida(rs.getInt("vida"));
+				u.setDefFis(rs.getInt("defFis"));
+				u.setDefMag(rs.getInt("defMag"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}finally {
+			stmt.close();
+		}
+		return u;
 	}
 
 	public Arma obtenerArma(String tipoArma, String nombreArma) throws SQLException {

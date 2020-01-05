@@ -15,9 +15,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class VentanaMenu {
-
-	private JFrame frame;
+public class VentanaMenu extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -28,7 +26,7 @@ public class VentanaMenu {
 			public void run() {
 				try {
 					VentanaMenu window = new VentanaMenu();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,19 +38,11 @@ public class VentanaMenu {
 	 * Create the application.
 	 */
 	public VentanaMenu() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(400, 100, 600, 400);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setResizable(false);
+		window.setBounds(400, 100, 600, 400);
+		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		window.setResizable(false);
 		JPanel panel = new JPanel(null);
-		frame.add(panel);
+		window.add(panel);
 		
 		JButton crearPersonajes = new JButton("Crear Personaje");
 		crearPersonajes.setBounds(30, 300, 130, 30);
@@ -63,10 +53,9 @@ public class VentanaMenu {
 				VentanaPersonaje ventanaPersonaje = new VentanaPersonaje(window);
 				ventanaPersonaje.setVisible(true);
 				ventanaPersonaje.setResizable(false);
-				frame.dispose();
+				window.dispose();
 				
 			}
-		});
-		
+		});	
 	}
 }

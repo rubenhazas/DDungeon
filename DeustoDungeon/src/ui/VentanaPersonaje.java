@@ -31,7 +31,7 @@ public class VentanaPersonaje extends JFrame {
 	public JButton crearPersonaje= new JButton("Crear Personaje");
 	public JButton volver = new JButton("Volver");
 	
-	
+	public VentanaPersonaje ventana= this;
 	
 	public VentanaPersonaje(VentanaMenu v) {
 		VentanaMenu menu= v;
@@ -39,8 +39,6 @@ public class VentanaPersonaje extends JFrame {
 		setBounds(0, 0, 400, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
-		
 		JPanel panel1 = new JPanel();
 		panel1.add(nom);
 		panel1.add(nomt);
@@ -60,7 +58,27 @@ public class VentanaPersonaje extends JFrame {
 		
 		add(panel1,BorderLayout.CENTER);
 		add(panel2,BorderLayout.SOUTH);
+		
+		
+		crearPersonaje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menu.setVisible(true);
+				ventana.dispose();
+			}
+		});
 	}
+	
+
 	
 	
 	

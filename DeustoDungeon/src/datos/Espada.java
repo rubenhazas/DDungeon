@@ -8,6 +8,10 @@ public class Espada extends Arma implements Atacante {
 		super(nom, descripcion, buffAtkFis, buffAtkMag);
 	}
 
+	public Espada() {
+		super();
+	}
+	
 	@Override
 	public void ataque1() {
 		// TODO Auto-generated method stub

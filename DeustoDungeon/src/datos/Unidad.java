@@ -22,7 +22,6 @@ public class Unidad {
 	}
 
 	public Unidad() {
-		super();
 		this.nom = "";
 		this.atkFis = 0;
 		this.descripcion = "";

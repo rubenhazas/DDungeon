@@ -10,6 +10,7 @@ import datos.Aliado;
 import datos.Arma;
 import datos.Armadura;
 import datos.Casco;
+import datos.Espada;
 import datos.Pechera;
 import datos.Unidad;
 
@@ -139,8 +140,9 @@ public class GestorDB {
 	}
 
 	public Arma obtenerArma(String tipoArma, String nombreArma) {
+		Espada e = new Espada();
 		
-		return null;
+		return e;
 	}
 	
 	public Casco obtenerCasco( String nombreArmadura) {

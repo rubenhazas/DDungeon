@@ -13,7 +13,9 @@ public class Arma {
 		this.buffAtkFis = buffAtkFis;
 		this.buffAtkMag = buffAtkMag;
 	}
-
+	public Arma() {
+		
+	}
 	public String getNom() {
 		return nom;
 	}

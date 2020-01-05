@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import datos.Aliado;
 import datos.Arma;
 import datos.Armadura;
 import datos.Unidad;
@@ -37,7 +38,7 @@ public class GestorDB {
 		stmt.setInt(7,unidad.getDefFis());
 		stmt.setInt(8,unidad.getDefMag());
 		stmt.setString(9, nombreArma);
-		stmt.setString(10, tipoArma);	
+		stmt.setString(10, tipoArma);
 		stmt.setString(11, casco);
 		stmt.setString(12, pechera);
 		
@@ -95,5 +96,28 @@ public class GestorDB {
 			System.out.println("no existe ese tipo de arma");
 		}
 	}
+	
+	public Aliado obtenerAliado () {
+		
+		
+		
+		
+		return null;
+	}
+	
+	public  Unidad obtenerUnidad(int i) {
+		
+		
+		return null;
+	}
 
+	public Arma obtenerArma(String tipoArma, String nombreArma) {
+		
+		return null;
+	}
+	
+	public Armadura obtenerArmadura(String tipoArmadura, String nombreArmadura) {
+		
+		return null;
+	}
 }

@@ -12,10 +12,6 @@ public class Unidad {
 	public int defFis;
 	public int defMag;
 	
-	
-	
-
-
 	public Unidad(String nom, String descripcion,int nivel, int atkFis, int atkMag, int vida, int defFis, int defMag) {
 		this.nom = nom;
 		this.descripcion = descripcion;

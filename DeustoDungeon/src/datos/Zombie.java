@@ -3,8 +3,8 @@ package datos;
 public class Zombie extends Unidad implements Atacante  {
 
 	
-	public Zombie(String nom, String descripcion,int nivel, int atkFis, int atkMag, int vida, int defFis, int defMag) {
-		super(nom,descripcion,nivel,atkFis,atkMag,vida,defFis,defMag);
+	public Zombie(String nom, String descripcion, int atkFis, int atkMag, int vida, int defFis, int defMag) {
+		super(nom,descripcion,atkFis,atkMag,vida,defFis,defMag);
 	}
 	@Override
 	public void ataque1() {

@@ -3,7 +3,6 @@ package datos;
 public class Unidad {
 	
 	public static int id;
-	public int nivel;
 	public String nom;
 	public String descripcion;
 	public int atkFis;
@@ -12,10 +11,9 @@ public class Unidad {
 	public int defFis;
 	public int defMag;
 	
-	public Unidad(String nom, String descripcion,int nivel, int atkFis, int atkMag, int vida, int defFis, int defMag) {
+	public Unidad(String nom, String descripcion,int atkFis, int atkMag, int vida, int defFis, int defMag) {
 		this.nom = nom;
 		this.descripcion = descripcion;
-		this.nivel = 1;
 		this.atkFis = atkFis;
 		this.atkMag = atkMag;
 		this.vida = vida;
@@ -23,18 +21,11 @@ public class Unidad {
 		this.defMag = defMag;
 	}
 
-
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
-	}
-
-
 	public Unidad() {
 		super();
 		this.nom = "";
 		this.atkFis = 0;
 		this.descripcion = "";
-		this.nivel= 1;
 		this.vida = 0;
 		this.atkMag = 0;
 		this.defFis = 0;
@@ -120,10 +111,7 @@ public class Unidad {
 	public void setDefMag(int defMag) {
 		this.defMag = defMag;
 	}
-	public int getNivel() {
-		return this.nivel;
-	}
-	
+
 	
 	
 	

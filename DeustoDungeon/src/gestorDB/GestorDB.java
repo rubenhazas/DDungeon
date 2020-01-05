@@ -3,11 +3,14 @@ package gestorDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import datos.Aliado;
 import datos.Arma;
 import datos.Armadura;
+import datos.Casco;
+import datos.Pechera;
 import datos.Unidad;
 
 public class GestorDB {
@@ -27,20 +30,19 @@ public class GestorDB {
 	}
 	
 	public void guardarAliado(Unidad unidad, String nombreArma, String tipoArma, String casco, String pechera) throws SQLException {
-		String sql = "INSERT INTO unidad (nombre, descripcion, nivel, atkFis, atkMag, vida, defFis, defMag, nombreArma, tipoArma, casco, pechera) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO unidad (nombre, descripcion, atkFis, atkMag, vida, defFis, defMag, nombreArma, tipoArma, casco, pechera) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1,unidad.getNom());
 		stmt.setString(2,unidad.getDescripcion());
-		stmt.setInt(3,unidad.getNivel());
-		stmt.setInt(4,unidad.getAtkFis());
-		stmt.setInt(5,unidad.getAtkMag());
-		stmt.setInt(6,unidad.getVida());
-		stmt.setInt(7,unidad.getDefFis());
-		stmt.setInt(8,unidad.getDefMag());
-		stmt.setString(9, nombreArma);
-		stmt.setString(10, tipoArma);
-		stmt.setString(11, casco);
-		stmt.setString(12, pechera);
+		stmt.setInt(3,unidad.getAtkFis());
+		stmt.setInt(4,unidad.getAtkMag());
+		stmt.setInt(5,unidad.getVida());
+		stmt.setInt(6,unidad.getDefFis());
+		stmt.setInt(7,unidad.getDefMag());
+		stmt.setString(8, nombreArma);
+		stmt.setString(9, tipoArma);
+		stmt.setString(10, casco);
+		stmt.setString(11, pechera);
 		
 		stmt.executeUpdate();
 		
@@ -97,12 +99,37 @@ public class GestorDB {
 		}
 	}
 	
-	public Aliado obtenerAliado () {
+	public Aliado obtenerAliado (String nombre) throws SQLException {
+		String sql = ("SELECT * FROM aliado where nombre = ?");
+		PreparedStatement stmt= conn.prepareStatement(sql);
 		
+		Aliado a = new Aliado();
+		try {
+			
 		
+		stmt.setString(1,nombre);
 		
-		
-		return null;
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			a.setNom(rs.getString("nombre"));
+			a.setDescripcion(rs.getString("descripcion"));
+			a.setAtkFis(rs.getInt("atkFis"));
+			a.setAtkMag(rs.getInt("atkMag"));
+			a.setVida(rs.getInt("vida"));
+			a.setDefFis(rs.getInt("defFis"));
+			a.setDefMag(rs.getInt("defMag"));
+			a.setArma(obtenerArma(rs.getString("tipoArma"),rs.getString("nombreArma")));
+			a.setCasco(obtenerCasco(rs.getString("armadura")));
+			a.setPechera(obtenerPechera(rs.getString("pechera")));
+		}else {
+			return null;
+		}
+		} catch (Exception e) {
+			throw e;
+		}finally{
+			stmt.close();
+		}
+		return a;
 	}
 	
 	public  Unidad obtenerUnidad(int i) {
@@ -116,7 +143,12 @@ public class GestorDB {
 		return null;
 	}
 	
-	public Armadura obtenerArmadura(String tipoArmadura, String nombreArmadura) {
+	public Casco obtenerCasco( String nombreArmadura) {
+		
+		return null;
+	}
+	
+	public Pechera obtenerPechera(String nombrePechera) {
 		
 		return null;
 	}

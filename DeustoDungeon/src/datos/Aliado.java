@@ -6,8 +6,8 @@ public class Aliado extends Unidad{
 	public Casco casco;
 	public Pechera pechera;
 
-	public Aliado(String nom, String descripcion,int nivel, int atkFis, int atkMag, int vida, int defFis, int defMag, Arma arma, Casco casco, Pechera pechera) {
-		super(nom,descripcion,nivel,atkFis,atkMag,vida,defFis,defMag);
+	public Aliado(String nom, String descripcion, int atkFis, int atkMag, int vida, int defFis, int defMag, Arma arma, Casco casco, Pechera pechera) {
+		super(nom,descripcion,atkFis,atkMag,vida,defFis,defMag);
 		this.arma= arma;
 		this.casco=casco;
 		this.pechera=pechera;
@@ -15,7 +15,6 @@ public class Aliado extends Unidad{
 
 	public Aliado() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Arma getArma() {

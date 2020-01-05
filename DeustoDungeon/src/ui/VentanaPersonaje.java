@@ -87,7 +87,6 @@ public class VentanaPersonaje extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
 				Unidad unidad= new Unidad(nomt.getText(),dest.getText(),Integer.parseInt(atkFist.getText()),Integer.parseInt(atkMagt.getText())
 						,Integer.parseInt(vidat.getText()),Integer.parseInt(defFist.getText()),Integer.parseInt(defMagt.getText())); 
 				try {
@@ -99,7 +98,6 @@ public class VentanaPersonaje extends JFrame {
 			}
 		});
 		volver.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				menu.setVisible(true);

@@ -123,13 +123,26 @@ public class Unidad implements Atacante {
 	
 	
 	@Override
-	public void ataque1() {
+	public int ataque1(int i) {
+		int daño=0;
+		int probabilidad= (int)(Math.random()*((100-1)+1))+1;
+		if(probabilidad<= 90) {
+			daño = (int)(Math.random()*((i-1)+1))+1;
+		}
+		
+		return daño;
 		
 	}
 
 	@Override
-	public void ataque2() {
+	public int ataque2(int i) {
+		int daño=0;
+		int probabilidad= (int)(Math.random()*((100-1)+1))+1;
+		if(probabilidad<= 40) {
+			daño = (int)((Math.random()*((i-1)+1))+1)*2;
+		}
 		
+		return daño;
 	}
 
 	

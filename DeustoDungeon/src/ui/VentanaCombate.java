@@ -89,6 +89,7 @@ public class VentanaCombate extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(token==0) {
 				int daño= a.getArma().getBuffAtkFis() + a.ataque1(a.getAtkFis());
 				int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
 				vidaTemporal= vidaTemporal - daño;
@@ -99,6 +100,7 @@ public class VentanaCombate extends JFrame {
 				}else {
 					vidaUnidad.setText(""+vidaTemporal);
 					token=1;
+					}
 				}
 			}
 		});
@@ -106,6 +108,7 @@ public class VentanaCombate extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(token==0) {
 				int daño= a.getArma().getBuffAtkFis() + a.ataque2(a.getAtkFis());
 				int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
 				vidaTemporal= vidaTemporal - daño;
@@ -116,6 +119,7 @@ public class VentanaCombate extends JFrame {
 				}else {
 					vidaUnidad.setText(""+vidaTemporal);
 					token=1;
+					}
 				}
 			}
 		});

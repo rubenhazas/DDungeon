@@ -3,18 +3,20 @@ package ui;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import javax.swing.*;
 
 
-import datos.Arma;
-import datos.Casco;
-import datos.Pechera;
+
 import datos.Unidad;
 import net.miginfocom.swing.MigLayout;
 
 public class VentanaPersonaje extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JLabel nom = new JLabel("Nombre");
 	public JLabel des = new JLabel("Descripcion");
 	public JLabel atkFis = new JLabel("Ataque Fisico");

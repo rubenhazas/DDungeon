@@ -74,7 +74,7 @@ public class VentanaCombate extends JFrame {
 		panel1.add(vidaAliado,"cell 2 7,alignx left,aligny center");
 		vidaUnidad.setText(""+unidad.getVida());
 		panel1.add(vidaUnidad, "cell 4 7");
-		nombreUnidad.setText(unidad.getNom());
+		nombreUnidad.setText(unidad.getNom()+"el "+unidad.getRaza());
 		panel1.add(nombreUnidad, "cell 4 6");
 		
 		
@@ -90,7 +90,17 @@ public class VentanaCombate extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(token==0) {
-				int daño= a.getArma().getBuffAtkFis() + a.ataque1(a.getAtkFis());
+					int dañoExtra=0;
+					int daño=0;
+					if(aliado.getArma().getTipo()=="espada"||aliado.getArma().getTipo()=="arco" ) {
+						dañoExtra = aliado.getArma().getBuffAtkFis();
+						daño= dañoExtra + aliado.ataque1(aliado.getAtkFis());
+						
+					}else if(aliado.getArma().getTipo()=="baston" ) {
+						dañoExtra = aliado.getArma().getBuffAtkMag();
+						daño= dañoExtra + aliado.ataque1(aliado.getAtkMag());
+					}
+				JOptionPane.showMessageDialog(null, "Tu "+aliado.getArma().getTipo()+" ha hecho: "+ daño+" puntos de daño" );
 				int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
 				vidaTemporal= vidaTemporal - daño;
 				if(vidaTemporal<=0) {
@@ -109,7 +119,16 @@ public class VentanaCombate extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(token==0) {
-				int daño= a.getArma().getBuffAtkFis() + a.ataque2(a.getAtkFis());
+					int dañoExtra=0;
+					int daño=0;
+					if(aliado.getArma().getTipo()=="espada"||aliado.getArma().getTipo()=="arco" ) {
+						dañoExtra = aliado.getArma().getBuffAtkFis();
+						daño= dañoExtra + aliado.ataque1(aliado.getAtkFis());
+					}else if(aliado.getArma().getTipo()=="baston" ) {
+						dañoExtra = aliado.getArma().getBuffAtkMag();
+						daño= dañoExtra + aliado.ataque1(aliado.getAtkMag());
+					}
+				JOptionPane.showMessageDialog(null, "Tu "+aliado.getArma().getTipo()+" ha hecho: "+ daño+" puntos de daño" );
 				int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
 				vidaTemporal= vidaTemporal - daño;
 				if(vidaTemporal<=0) {
@@ -137,6 +156,11 @@ public class VentanaCombate extends JFrame {
 		
 		public void run() {
 			while(continuar) {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				if(token==1) {
 					if(turnosUnidad==3) {
 						int daño=  + unidad.ataque2(unidad.getAtkFis());
@@ -150,7 +174,10 @@ public class VentanaCombate extends JFrame {
 						}else {
 							vidaAliado.setText(""+vidaTemporal);
 							token=0;
+							turnosUnidad=0;
+							
 						}
+					JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ daño+" puntos de daño" );
 					}else {
 						int daño=  + unidad.ataque1(unidad.getAtkFis());
 						int vidaTemporal = Integer.parseInt(vidaAliado.getText());
@@ -163,8 +190,15 @@ public class VentanaCombate extends JFrame {
 						}else {
 							vidaAliado.setText(""+vidaTemporal);
 							token=0;
+							turnosUnidad= turnosUnidad+1;
 						}
+					JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ daño+" puntos de daño" );
 					}
+				}
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			}
 		}

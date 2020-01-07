@@ -118,6 +118,7 @@ public class VentanaCombate extends JFrame {
 		});
 		ataqueSecundario.addActionListener(new ActionListener() {
 			
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(token==0) {

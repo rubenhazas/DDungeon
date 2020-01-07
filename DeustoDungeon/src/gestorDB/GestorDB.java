@@ -74,12 +74,12 @@ public class GestorDB {
 		
 	}
 	
-	public void guardarArma(Arma arma, String tipo) throws SQLException {
+	public void guardarArma(Arma arma) throws SQLException {
 		String sql = "INSERT INTO armas (nombre, tipo, descripcion, buffAtkFis, buffAtkMag) VALUES (?,?,?,?,?)";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, arma.getNom());
-			stmt.setString(2, tipo);
+			stmt.setString(2, arma.getTipo());
 			stmt.setString(3, arma.getDescripcion());
 			stmt.setInt(4, arma.getBuffAtkFis());
 			stmt.setInt(5, arma.getBuffAtkMag());

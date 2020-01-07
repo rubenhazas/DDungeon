@@ -12,10 +12,9 @@ public class BDpruebas {
 	public static void main(String[] args)throws SQLException, ClassNotFoundException {
 		miDB= new GestorDB();
 		miDB.conectar();
-		Unidad unidad;
+		Arma arma = new Arma("Baston elfico","baston","baston elfico",0,6);
 		
-		//unidad= new Aliado("prueba2","descripcion de prueba 2", 1, 1, 1, 100,10, 10);
-		miDB.guardarArma(new Arma("a","a","", 1,1), "espada");
+		miDB.guardarArma(arma);
 		System.out.println("guardado");	
 		miDB.desconectar();
 	}

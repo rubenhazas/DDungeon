@@ -12,7 +12,7 @@ public class BDpruebas {
 	public static void main(String[] args)throws SQLException, ClassNotFoundException {
 		miDB= new GestorDB();
 		miDB.conectar();
-		Arma arma = new Arma("Baston elfico","baston","baston elfico",0,6);
+		Arma arma = new Arma("Arco elfico","arco","Arco elfico",6,0);
 		
 		miDB.guardarArma(arma);
 		System.out.println("guardado");	

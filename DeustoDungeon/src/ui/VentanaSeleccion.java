@@ -30,7 +30,9 @@ public class VentanaSeleccion extends JFrame {
 	public JPanel panel1 = new JPanel();
 	public JButton volver = new JButton("Volver");
 	public JLabel nombre = new JLabel("Nombre");
-	
+	public JButton buscarPersonaje = new JButton("Buscar Personaje");
+	public JButton pelear = new JButton("Pelear");
+	public JTextField nombret = new JTextField();
 	public  VentanaSeleccion(VentanaMenu v) {
 		
 		VentanaMenu menu = v;
@@ -55,12 +57,12 @@ public class VentanaSeleccion extends JFrame {
 		});
 	
 		panel1.add(nombre, "cell 2 1");
-		JTextField nombret = new JTextField();
+		
 		panel1.add(nombret, "cell 3 1,growx,aligny center");
 		
-		JButton buscarPersonaje = new JButton("Buscar Personaje");
+		
 		panel1.add(buscarPersonaje, "cell 1 4");
-		JButton pelear = new JButton("Pelear");
+		
 		panel1.add(pelear, "cell 4 4");
 		
 		buscarPersonaje.addActionListener(new ActionListener() {

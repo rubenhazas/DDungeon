@@ -17,6 +17,7 @@ public class BDpruebas {
 		miDB.guardarArma(arma);
 		System.out.println("guardado");	
 		miDB.desconectar();
+		
 	}
 
 }

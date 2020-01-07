@@ -20,6 +20,7 @@ public class BDpruebas {
 		//System.out.println("guardado");
 		//miDB.desconectar();
 		
+		
 	}
 
 }

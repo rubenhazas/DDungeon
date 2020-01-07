@@ -30,6 +30,11 @@ public class VentanaMenu extends JFrame {
 	static GestorDB miDB;
 	static Connection miConexion;
 	
+	
+	public JButton crearPersonajes = new JButton("Crear Personaje");
+	public JButton seleccionarPersonaje = new JButton("Seleccionar Personaje");
+	public JLabel titulo = new JLabel("DeustoDungeon");
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -55,7 +60,7 @@ public class VentanaMenu extends JFrame {
 		JPanel panel = new JPanel(null);
 		window.getContentPane().add(panel);
 		
-		JButton crearPersonajes = new JButton("Crear Personaje");
+		
 		crearPersonajes.setBounds(56, 76, 130, 30);
 		panel.add(crearPersonajes);
 		crearPersonajes.addActionListener(new ActionListener() {
@@ -68,7 +73,7 @@ public class VentanaMenu extends JFrame {
 				
 			}
 		});	
-		JButton seleccionarPersonaje = new JButton("Seleccionar Personaje");
+		
 		seleccionarPersonaje.setBounds(230,76,170,30);
 		panel.add(seleccionarPersonaje);
 		
@@ -82,7 +87,7 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 		
-		JLabel titulo = new JLabel("DeustoDungeon");
+		
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(140, 27,143,30);
 		panel.add(titulo);

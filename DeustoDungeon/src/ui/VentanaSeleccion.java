@@ -27,6 +27,10 @@ public class VentanaSeleccion extends JFrame {
 	public VentanaSeleccion ventana= this;
 	public Aliado a;
 	public Unidad u;
+	public JPanel panel1 = new JPanel();
+	public JButton volver = new JButton("Volver");
+	public JLabel nombre = new JLabel("Nombre");
+	
 	public  VentanaSeleccion(VentanaMenu v) {
 		
 		VentanaMenu menu = v;
@@ -36,11 +40,11 @@ public class VentanaSeleccion extends JFrame {
 		setResizable(false);
 		
 		
-		JPanel panel1 = new JPanel();
+		
 		panel1.setLayout(new MigLayout("", "[11.00][106.00][55.00][79.00][75.00]", "[][][][13.00][]"));
 		getContentPane().add(panel1);
 		
-		JButton volver = new JButton("Volver");
+		
 		panel1.add(volver, "cell 1 0,alignx left,aligny center");
 		volver.addActionListener(new ActionListener() {
 			@Override
@@ -49,7 +53,7 @@ public class VentanaSeleccion extends JFrame {
 				ventana.dispose();
 			}
 		});
-		JLabel nombre = new JLabel("Nombre");
+	
 		panel1.add(nombre, "cell 2 1");
 		JTextField nombret = new JTextField();
 		panel1.add(nombret, "cell 3 1,growx,aligny center");

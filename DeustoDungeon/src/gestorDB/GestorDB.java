@@ -75,26 +75,15 @@ public class GestorDB {
 	}
 	
 	public void guardarArma(Arma arma, String tipo) throws SQLException {
-		String sql = "INSERT INTO "+tipo+" (nombre, descripcion, buffAtkFis, buffAtkMag) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO armas (nombre, tipo, descripcion, buffAtkFis, buffAtkMag) VALUES (?,?,?,?,?)";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
-
 			stmt.setString(1, arma.getNom());
-			stmt.setString(2, arma.getDescripcion());
-			stmt.setInt(3, arma.getBuffAtkFis());
-			stmt.setInt(4, arma.getBuffAtkMag());
-		if(tipo=="baston") {
+			stmt.setString(2, tipo);
+			stmt.setString(3, arma.getDescripcion());
+			stmt.setInt(4, arma.getBuffAtkFis());
+			stmt.setInt(5, arma.getBuffAtkMag());
 			stmt.execute();
-			System.out.println("baston guardado");
-		}else if(tipo=="espada"){
-			stmt.execute();
-			System.out.println("espada guardada");
-		}else if(tipo=="arco") {
-			stmt.execute();
-			System.out.println("arco guardado");
-		}else {
-			System.out.println("no existe ese tipo de arma");
-		}
 	}
 	
 	public Aliado obtenerAliado (String nombre) throws SQLException {
@@ -103,8 +92,6 @@ public class GestorDB {
 		
 		Aliado a = new Aliado();
 		try {
-			
-		
 		stmt.setString(1,nombre);
 		
 		ResultSet rs = stmt.executeQuery();
@@ -116,8 +103,8 @@ public class GestorDB {
 			a.setVida(rs.getInt("vida"));
 			a.setDefFis(rs.getInt("defFis"));
 			a.setDefMag(rs.getInt("defMag"));
-			a.setArma(obtenerArma(rs.getString("tipoArma"),rs.getString("nombreArma")));
-			a.setCasco(obtenerCasco(rs.getString("armadura")));
+			a.setArma(obtenerArma(rs.getString("nombreArma")));
+			a.setCasco(obtenerCasco(rs.getString("casco")));
 			a.setPechera(obtenerPechera(rs.getString("pechera")));
 		}else {
 			return null;
@@ -159,7 +146,7 @@ public class GestorDB {
 		return u;
 	}
 
-	public Arma obtenerArma(String tipoArma, String nombreArma) throws SQLException {
+	public Arma obtenerArma(String nombreArma) throws SQLException {
 		Arma a = new Arma();
 		String sql = ("SELECT * FROM armas WHERE nombre = ?" );
 		PreparedStatement stmt = conn.prepareStatement(sql);

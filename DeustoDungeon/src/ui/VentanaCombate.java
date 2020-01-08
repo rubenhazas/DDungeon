@@ -51,38 +51,61 @@ public class VentanaCombate extends JFrame {
 		unidad= u;
 		//miHilo.run();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(700,300,500,350);
+		setBounds(700,300,500,300);
 		setResizable(false);
 		
 		getContentPane().add(panel1,BorderLayout.CENTER);
-		panel1.setLayout(new MigLayout("", "[83.00px][][123px][][]", "[23px][][][][][][][][][][][][][][][]"));
+		panel1.setLayout(new MigLayout("", "[83.00px][][123px][][]", "[23px][][][][][][][50.00][][]"));
 		
 		panel1.add(volver, "cell 0 1,alignx center");
 		
 		nombreAliado.setText(aliado.getNom());
 		
-		panel1.add(nombreAliado, "cell 2 6");
+		panel1.add(nombreAliado, "cell 2 5");
+		nombreUnidad.setText(unidad.getNom()+" el "+unidad.getRaza());
+		panel1.add(nombreUnidad, "cell 4 5");
 		
-		panel1.add(vidaAli, "cell 1 7");
-		
-		panel1.add(vidaUni, "cell 3 7");
-		
-		panel1.add(ataquePrincipal, "cell 2 11");
-		
-		panel1.add(ataqueSecundario, "cell 4 11");
+		panel1.add(vidaAli, "cell 1 6");
 		
 		vidaAliado.setText(""+(aliado.getVida()+aliado.getCasco().getBuffVida()+aliado.getPechera().getBuffVida()));
-		panel1.add(vidaAliado,"cell 2 7,alignx left,aligny center");
+		panel1.add(vidaAliado,"cell 2 6,alignx left,aligny center");
+		
+		panel1.add(vidaUni, "cell 3 6");
 		vidaUnidad.setText(""+unidad.getVida());
-		panel1.add(vidaUnidad, "cell 4 7");
-		nombreUnidad.setText(unidad.getNom()+"el "+unidad.getRaza());
-		panel1.add(nombreUnidad, "cell 4 6");
+		panel1.add(vidaUnidad, "cell 4 6");
 		
+		panel1.add(ataquePrincipal, "cell 2 8");
 		
-		volver.addActionListener(new ActionListener() {
+		panel1.add(ataqueSecundario, "cell 4 8");
+		ataqueSecundario.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				menu.setVisible(true);
-				ventana.dispose();
+				if(token==0) {
+					int dañoExtra=0;
+					int daño=0;
+					int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
+					if(aliado.getArma().getTipo().contentEquals("espada")||aliado.getArma().getTipo().contentEquals("arco")) {
+						dañoExtra = aliado.getAtkFis();
+						daño= dañoExtra + aliado.ataque2(aliado.getArma().getBuffAtkFis());
+						vidaTemporal= vidaTemporal -(daño-unidad.getDefFis());
+						
+					}else if(aliado.getArma().getTipo().contentEquals("baston")) {
+						dañoExtra = aliado.getAtkMag();
+						daño= dañoExtra + aliado.ataque2(aliado.getArma().getBuffAtkMag());
+						vidaTemporal= vidaTemporal -(daño-unidad.getDefMag());
+						
+					}
+				JOptionPane.showMessageDialog(null, "Tu "+aliado.getArma().getTipo()+" ha hecho: "+ daño+" puntos de daño" );
+				if(vidaTemporal<=0) {
+					JOptionPane.showMessageDialog(null, "Has ganado");
+					menu.setVisible(true);
+					ventana.dispose();
+				}else {
+					vidaUnidad.setText(""+vidaTemporal);
+					token=1;
+					}
+				}
 			}
 		});
 		
@@ -96,12 +119,12 @@ public class VentanaCombate extends JFrame {
 					int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
 					
 					if(aliado.getArma().getTipo().contentEquals("espada")||aliado.getArma().getTipo().contentEquals("arco") ) {
-						dañoExtra = aliado.getArma().getBuffAtkFis();
-						daño= dañoExtra + aliado.ataque1(aliado.getAtkFis());
+						dañoExtra =aliado.getAtkFis() ;
+						daño= dañoExtra + aliado.ataque1(aliado.getArma().getBuffAtkFis());
 						vidaTemporal= vidaTemporal - (daño-unidad.getDefFis());
 					}else if(aliado.getArma().getTipo().contentEquals("baston") ) {
-						dañoExtra = aliado.getArma().getBuffAtkMag();
-						daño= dañoExtra + aliado.ataque1(aliado.getAtkMag());
+						dañoExtra = aliado.getAtkMag();
+						daño= dañoExtra + aliado.ataque1(aliado.getArma().getBuffAtkMag());
 						vidaTemporal= vidaTemporal - (daño-unidad.getDefMag());
 					}
 				JOptionPane.showMessageDialog(null, "Tu "+aliado.getArma().getTipo()+" ha hecho: "+ daño+" puntos de daño" );
@@ -116,33 +139,12 @@ public class VentanaCombate extends JFrame {
 				}
 			}
 		});
-		ataqueSecundario.addActionListener(new ActionListener() {
-			
-			@Override
+		
+		
+		volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(token==0) {
-					int dañoExtra=0;
-					int daño=0;
-					int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
-					if(aliado.getArma().getTipo().contentEquals("espada")||aliado.getArma().getTipo().contentEquals("arco")) {
-						dañoExtra = aliado.getArma().getBuffAtkFis();
-						daño= dañoExtra + aliado.ataque1(aliado.getAtkFis());
-						vidaTemporal= vidaTemporal - (daño-unidad.getDefFis());
-					}else if(aliado.getArma().getTipo().contentEquals("baston")) {
-						dañoExtra = aliado.getArma().getBuffAtkMag();
-						daño= dañoExtra + aliado.ataque1(aliado.getAtkMag());
-						vidaTemporal= vidaTemporal - (daño-unidad.getDefMag());
-					}
-				JOptionPane.showMessageDialog(null, "Tu "+aliado.getArma().getTipo()+" ha hecho: "+ daño+" puntos de daño" );
-				if(vidaTemporal<=0) {
-					JOptionPane.showMessageDialog(null, "Has ganado");
-					menu.setVisible(true);
-					ventana.dispose();
-				}else {
-					vidaUnidad.setText(""+vidaTemporal);
-					token=1;
-					}
-				}
+				menu.setVisible(true);
+				ventana.dispose();
 			}
 		});
 	
@@ -159,11 +161,6 @@ public class VentanaCombate extends JFrame {
 		
 		public void run() {
 			while(continuar) {
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 				if(token==1) {
 					if(turnosUnidad==3) {
 						int daño=0;
@@ -210,11 +207,6 @@ public class VentanaCombate extends JFrame {
 						}
 					JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ daño+" puntos de daño" );
 					}
-				}
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
 				}
 			}
 		}

@@ -74,6 +74,7 @@ public class Arma implements Atacante{
 		int probabilidad= (int)(Math.random()*((100-1)+1))+1;
 		if(probabilidad<= 50) {
 			daño = (int)((Math.random()*((i-1)+1))+1)*2;
+			
 		}
 		
 		return daño;

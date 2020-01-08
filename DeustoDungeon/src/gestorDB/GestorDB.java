@@ -31,6 +31,7 @@ public class GestorDB {
 		conn.close();
 	}
 	
+	
 	public void guardarAliado(Unidad unidad, String nombreArma, String tipoArma, String casco, String pechera) throws SQLException {
 		String sql = "INSERT INTO aliado (nombre, raza, descripcion, atkFis, atkMag, vida, defFis, defMag, nombreArma, tipoArma, casco, pechera) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);

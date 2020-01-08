@@ -91,7 +91,7 @@ public class VentanaPersonaje extends JFrame {
 				Unidad unidad= new Unidad(nomt.getText(),dest.getText(),"humano", Integer.parseInt(atkFist.getText()),Integer.parseInt(atkMagt.getText())
 						,Integer.parseInt(vidat.getText()),Integer.parseInt(defFist.getText()),Integer.parseInt(defMagt.getText())); 
 				try {
-					if(tipoArmat.getText()=="espada" || tipoArmat.getText()=="arco" ||tipoArmat.getText()=="baston" ) {
+					if(tipoArmat.getText().contentEquals("espada") || tipoArmat.getText().contentEquals("arco")||tipoArmat.getText().contentEquals("baston") ) {
 						menu.miDB.guardarAliado(unidad, nombreArmat.getText(), tipoArmat.getText(), cascot.getText(), pecherat.getText());
 						JOptionPane.showMessageDialog(null, "Personaje creado con exito");
 					}else {

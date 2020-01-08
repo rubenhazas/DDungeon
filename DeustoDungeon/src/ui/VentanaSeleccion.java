@@ -74,6 +74,7 @@ public class VentanaSeleccion extends JFrame {
 							a = menu.miDB.obtenerAliado(nombret.getText());
 							if(a!= null) {
 								JOptionPane.showMessageDialog(null, "Personaje seleccionado con exito");
+								System.out.println(a.getNom());
 							}else {
 								JOptionPane.showMessageDialog(null, "El personaje no existe");
 							}

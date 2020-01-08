@@ -95,11 +95,11 @@ public class VentanaCombate extends JFrame {
 					int daño=0;
 					int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
 					
-					if(aliado.getArma().getTipo()=="espada"||aliado.getArma().getTipo()=="arco" ) {
+					if(aliado.getArma().getTipo().contentEquals("espada")||aliado.getArma().getTipo().contentEquals("arco") ) {
 						dañoExtra = aliado.getArma().getBuffAtkFis();
 						daño= dañoExtra + aliado.ataque1(aliado.getAtkFis());
 						vidaTemporal= vidaTemporal - (daño-unidad.getDefFis());
-					}else if(aliado.getArma().getTipo()=="baston" ) {
+					}else if(aliado.getArma().getTipo().contentEquals("baston") ) {
 						dañoExtra = aliado.getArma().getBuffAtkMag();
 						daño= dañoExtra + aliado.ataque1(aliado.getAtkMag());
 						vidaTemporal= vidaTemporal - (daño-unidad.getDefMag());
@@ -124,11 +124,11 @@ public class VentanaCombate extends JFrame {
 					int dañoExtra=0;
 					int daño=0;
 					int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
-					if(aliado.getArma().getTipo()=="espada"||aliado.getArma().getTipo()=="arco" ) {
+					if(aliado.getArma().getTipo().contentEquals("espada")||aliado.getArma().getTipo().contentEquals("arco")) {
 						dañoExtra = aliado.getArma().getBuffAtkFis();
 						daño= dañoExtra + aliado.ataque1(aliado.getAtkFis());
 						vidaTemporal= vidaTemporal - (daño-unidad.getDefFis());
-					}else if(aliado.getArma().getTipo()=="baston" ) {
+					}else if(aliado.getArma().getTipo().contentEquals("baston")) {
 						dañoExtra = aliado.getArma().getBuffAtkMag();
 						daño= dañoExtra + aliado.ataque1(aliado.getAtkMag());
 						vidaTemporal= vidaTemporal - (daño-unidad.getDefMag());
@@ -169,10 +169,10 @@ public class VentanaCombate extends JFrame {
 						int daño=0;
 						int vidaTemporal = Integer.parseInt(vidaAliado.getText());
 						
-						if(unidad.getRaza()=="orco" || unidad.getRaza()=="esqueleto") {
+						if(unidad.getRaza().contentEquals("orco")|| unidad.getRaza().contentEquals("esqueleto")) {
 							daño = unidad.ataque2(unidad.getAtkFis());
 							vidaTemporal= vidaTemporal - (daño-(aliado.getDefFis()+aliado.getCasco().getBuffDefFis()+aliado.getPechera().getBuffDefFis()));
-						}else if (unidad.getRaza()=="nigromante") {
+						}else if (unidad.getRaza().contentEquals("nigromante")) {
 							daño = unidad.ataque2(unidad.getAtkMag());
 							vidaTemporal= vidaTemporal - (daño-(aliado.getDefMag()+aliado.getCasco().getBuffDefMag()+aliado.getPechera().getBuffDefMag()));
 						}
@@ -191,10 +191,10 @@ public class VentanaCombate extends JFrame {
 					}else {
 						int daño=0;
 						int vidaTemporal = Integer.parseInt(vidaAliado.getText());
-						if(unidad.getRaza()=="orco" || unidad.getRaza()=="esqueleto") {
+						if(unidad.getRaza().contentEquals("orco")||unidad.getRaza().contentEquals("esqueleto")) {
 							daño = unidad.ataque1(unidad.getAtkFis());
 							vidaTemporal= vidaTemporal - (daño-(aliado.getDefFis()+aliado.getCasco().getBuffDefFis()+aliado.getPechera().getBuffDefFis()));
-						}else if (unidad.getRaza()=="nigromante") {
+						}else if (unidad.getRaza().contentEquals("nigromante")) {
 							daño = unidad.ataque1(unidad.getAtkMag());
 							vidaTemporal= vidaTemporal - (daño-(aliado.getDefMag()+aliado.getCasco().getBuffDefMag()+aliado.getPechera().getBuffDefMag()));
 						}

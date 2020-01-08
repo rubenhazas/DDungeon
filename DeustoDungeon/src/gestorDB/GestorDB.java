@@ -121,7 +121,7 @@ public class GestorDB {
 		
 		Unidad u = new Unidad(); 
 		
-		String sql =("SELECT numero, nombre, raza, descripcion, atkFis, atkMag, vida, defFis, defMag FROM unidad WHERE numero = ?");
+		String sql =("SELECT nombre, raza, descripcion, atkFis, atkMag, vida, defFis, defMag FROM unidad WHERE numero = ?");
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
 		try {

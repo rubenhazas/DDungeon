@@ -49,7 +49,7 @@ public class VentanaCombate extends JFrame {
 		menu= v;
 		aliado= a;
 		unidad= u;
-		miHilo.run();
+		//miHilo.run();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(700,300,500,350);
 		setResizable(false);
@@ -71,7 +71,7 @@ public class VentanaCombate extends JFrame {
 		
 		panel1.add(ataqueSecundario, "cell 4 11");
 		
-		vidaAliado.setText(""+(aliado.getVida()+aliado.getCasco().getBuffVida()));
+		vidaAliado.setText(""+(aliado.getVida()+aliado.getCasco().getBuffVida()+aliado.getPechera().getBuffVida()));
 		panel1.add(vidaAliado,"cell 2 7,alignx left,aligny center");
 		vidaUnidad.setText(""+unidad.getVida());
 		panel1.add(vidaUnidad, "cell 4 7");

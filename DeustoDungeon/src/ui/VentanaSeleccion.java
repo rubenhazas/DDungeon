@@ -89,15 +89,19 @@ public class VentanaSeleccion extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int i = (int) (Math.random()*((6-1)+1))+1;
+				System.out.println(i);
 				try {
 					u = menu.miDB.obtenerUnidad(i);
+					System.out.println(i);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				System.out.println(i);
 				VentanaCombate ventanaCombate = new VentanaCombate(menu,a,u);
 				ventanaCombate.setVisible(true);
 				ventana.dispose();
+				System.out.println(u.getNom());
 			}
 		});
 	}

@@ -87,7 +87,7 @@ public class GestorDB {
 	}
 	
 	public Aliado obtenerAliado (String nombre) throws SQLException {
-		String sql = ("SELECT * FROM aliado where nombre = ?");
+		String sql = ("SELECT nombre, descripcion, atkFis, atkMag, vida, defFis, defMag, nombreArma, casco, pechera FROM aliado WHERE nombre = ?");
 		PreparedStatement stmt= conn.prepareStatement(sql);
 		
 		Aliado a = new Aliado();
@@ -121,7 +121,7 @@ public class GestorDB {
 		
 		Unidad u = new Unidad(); 
 		
-		String sql =("SELECT * FROM unidad WHERE index = ?");
+		String sql =("SELECT index, nombre, raza, descripcion, atkFis, atkMag, vida, defFis, defMag FROM unidad WHERE index = ?");
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
 		try {
@@ -148,7 +148,7 @@ public class GestorDB {
 
 	public Arma obtenerArma(String nombreArma) throws SQLException {
 		Arma a = new Arma();
-		String sql = ("SELECT * FROM armas WHERE nombre = ?" );
+		String sql = ("SELECT nombre, tipo, descripcion, buffAtkFis, buffAtkMag FROM armas WHERE nombre = ?" );
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
 		try {
@@ -177,7 +177,7 @@ public class GestorDB {
 	public Casco obtenerCasco( String nombreArmadura) throws SQLException {
 		Casco c =new Casco();
 		
-		String sql = ("SELECT * FROM casco WHERE nombre = ?");
+		String sql = ("SELECT nombre, descripcion, buffVida, buffDefFis, buffDefMag FROM casco WHERE nombre = ?");
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
 		try {
@@ -203,7 +203,7 @@ public class GestorDB {
 	public Pechera obtenerPechera(String nombrePechera) throws SQLException {
 		Pechera p = new Pechera();
 		
-		String sql=("SELECT * FROM pechera WHERE nombre = ?");
+		String sql=("SELECT nombre, descripcion, buffVida, buffDefFis, buffDefMag FROM pechera WHERE nombre = ?");
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		

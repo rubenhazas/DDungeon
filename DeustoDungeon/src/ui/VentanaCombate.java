@@ -28,7 +28,6 @@ public class VentanaCombate extends JFrame {
 	public VentanaCombate ventana= this;
 	public Aliado aliado;
 	public Unidad unidad;
-	public int token=0;
 	public int turnosUnidad=0;
 	
 	public JPanel panel1 = new JPanel();
@@ -49,7 +48,7 @@ public class VentanaCombate extends JFrame {
 		menu= v;
 		aliado= a;
 		unidad= u;
-		//miHilo.run();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(700,300,500,300);
 		setResizable(false);
@@ -81,19 +80,21 @@ public class VentanaCombate extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(token==0) {
 					int dañoExtra=0;
 					int daño=0;
+					int dañoTotal=0;
 					int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
 					if(aliado.getArma().getTipo().contentEquals("espada")||aliado.getArma().getTipo().contentEquals("arco")) {
 						dañoExtra = aliado.getAtkFis();
-						daño= dañoExtra + aliado.ataque2(aliado.getArma().getBuffAtkFis());
-						vidaTemporal= vidaTemporal -(daño-unidad.getDefFis());
+						daño= (dañoExtra + aliado.ataque2(aliado.getArma().getBuffAtkFis()));
+						dañoTotal= daño- unidad.getDefFis();
+						vidaTemporal= vidaTemporal -(dañoTotal);
 						
 					}else if(aliado.getArma().getTipo().contentEquals("baston")) {
 						dañoExtra = aliado.getAtkMag();
-						daño= dañoExtra + aliado.ataque2(aliado.getArma().getBuffAtkMag());
-						vidaTemporal= vidaTemporal -(daño-unidad.getDefMag());
+						daño= (dañoExtra + aliado.ataque2(aliado.getArma().getBuffAtkMag()));
+						dañoTotal = daño- unidad.getDefMag();
+						vidaTemporal= vidaTemporal -(dañoTotal);
 						
 					}
 				JOptionPane.showMessageDialog(null, "Tu "+aliado.getArma().getTipo()+" ha hecho: "+ daño+" puntos de daño" );
@@ -103,40 +104,41 @@ public class VentanaCombate extends JFrame {
 					ventana.dispose();
 				}else {
 					vidaUnidad.setText(""+vidaTemporal);
-					token=1;
+					miHilo.run();
 					}
+				
 				}
-			}
+			
 		});
 		
 		ataquePrincipal.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(token==0) {
 					int dañoExtra=0;
 					int daño=0;
 					int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
-					
+					int dañoTotal=0;
 					if(aliado.getArma().getTipo().contentEquals("espada")||aliado.getArma().getTipo().contentEquals("arco") ) {
 						dañoExtra =aliado.getAtkFis() ;
-						daño= dañoExtra + aliado.ataque1(aliado.getArma().getBuffAtkFis());
-						vidaTemporal= vidaTemporal - (daño-unidad.getDefFis());
+						daño= (dañoExtra + aliado.ataque1(aliado.getArma().getBuffAtkFis()));
+						dañoTotal= daño - unidad.getDefFis();
+						vidaTemporal= vidaTemporal - (dañoTotal);
 					}else if(aliado.getArma().getTipo().contentEquals("baston") ) {
 						dañoExtra = aliado.getAtkMag();
-						daño= dañoExtra + aliado.ataque1(aliado.getArma().getBuffAtkMag());
-						vidaTemporal= vidaTemporal - (daño-unidad.getDefMag());
+						daño= (dañoExtra + aliado.ataque1(aliado.getArma().getBuffAtkMag()));
+						dañoTotal =daño -unidad.getDefMag();
+						vidaTemporal= vidaTemporal - (dañoTotal);
 					}
-				JOptionPane.showMessageDialog(null, "Tu "+aliado.getArma().getTipo()+" ha hecho: "+ daño+" puntos de daño" );
+				JOptionPane.showMessageDialog(null, "Tu "+aliado.getArma().getTipo()+" ha hecho: "+ dañoTotal+" puntos de daño" );
 				if(vidaTemporal<=0) {
 					JOptionPane.showMessageDialog(null, "Has ganado");
 					menu.setVisible(true);
 					ventana.dispose();
 				}else {
 					vidaUnidad.setText(""+vidaTemporal);
-					token=1;
+					miHilo.run();
 					}
-				}
 			}
 		});
 		
@@ -153,63 +155,77 @@ public class VentanaCombate extends JFrame {
 	
 	public class HiloCombate extends Thread {
 
-		private boolean continuar=true;
-		
-		public void detener() {
-			continuar=false;
-		}
-		
 		public void run() {
-			while(continuar) {
-				if(token==1) {
-					if(turnosUnidad==3) {
+			
+				if(turnosUnidad==3) {
 						int daño=0;
 						int vidaTemporal = Integer.parseInt(vidaAliado.getText());
-						
+						int dañoTotal=0;
 						if(unidad.getRaza().contentEquals("orco")|| unidad.getRaza().contentEquals("esqueleto")) {
 							daño = unidad.ataque2(unidad.getAtkFis());
-							vidaTemporal= vidaTemporal - (daño-(aliado.getDefFis()+aliado.getCasco().getBuffDefFis()+aliado.getPechera().getBuffDefFis()));
+							dañoTotal = daño -(aliado.getDefFis()+aliado.getCasco().getBuffDefFis()+aliado.getPechera().getBuffDefFis());
+							if(dañoTotal>=0) {
+								vidaTemporal= vidaTemporal - (dañoTotal);
+								JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ dañoTotal+" puntos de daño" );
+							}else {
+								JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: 0 puntos de daño" );
+							}
+							
 						}else if (unidad.getRaza().contentEquals("nigromante")) {
 							daño = unidad.ataque2(unidad.getAtkMag());
-							vidaTemporal= vidaTemporal - (daño-(aliado.getDefMag()+aliado.getCasco().getBuffDefMag()+aliado.getPechera().getBuffDefMag()));
+							dañoTotal = daño -(aliado.getDefFis()+aliado.getCasco().getBuffDefFis()+aliado.getPechera().getBuffDefFis());
+							if(dañoTotal>=0) {
+								vidaTemporal= vidaTemporal - (dañoTotal);
+								JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ dañoTotal+" puntos de daño" );
+							}else {
+								JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: 0 puntos de daño" );
+							}
 						}
 						if(vidaTemporal<=0) {
 							JOptionPane.showMessageDialog(null, "Has perdido");
 							menu.setVisible(true);
 							ventana.dispose();
-							miHilo.detener();
 						}else {
 							vidaAliado.setText(""+vidaTemporal);
-							token=0;
 							turnosUnidad=0;
-							
 						}
-					JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ daño+" puntos de daño" );
+					
 					}else {
 						int daño=0;
 						int vidaTemporal = Integer.parseInt(vidaAliado.getText());
+						int dañoTotal=0;
 						if(unidad.getRaza().contentEquals("orco")||unidad.getRaza().contentEquals("esqueleto")) {
+							
 							daño = unidad.ataque1(unidad.getAtkFis());
-							vidaTemporal= vidaTemporal - (daño-(aliado.getDefFis()+aliado.getCasco().getBuffDefFis()+aliado.getPechera().getBuffDefFis()));
+							dañoTotal = daño -(aliado.getDefFis()+aliado.getCasco().getBuffDefFis()+aliado.getPechera().getBuffDefFis());
+							if(dañoTotal>=0) {
+								vidaTemporal= vidaTemporal - (dañoTotal);
+								JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ dañoTotal+" puntos de daño" );
+							}else {
+								JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: 0 puntos de daño" );
+							}
 						}else if (unidad.getRaza().contentEquals("nigromante")) {
-							daño = unidad.ataque1(unidad.getAtkMag());
-							vidaTemporal= vidaTemporal - (daño-(aliado.getDefMag()+aliado.getCasco().getBuffDefMag()+aliado.getPechera().getBuffDefMag()));
+							daño = unidad.ataque1(unidad.getAtkMag())-(aliado.getDefMag()+aliado.getCasco().getBuffDefMag()+aliado.getPechera().getBuffDefMag());
+							dañoTotal = daño -(aliado.getDefFis()+aliado.getCasco().getBuffDefFis()+ aliado.getPechera().getBuffDefFis());
+							if(dañoTotal>=0) {
+								vidaTemporal= vidaTemporal - (dañoTotal);
+								JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ dañoTotal+" puntos de daño" );
+							}else {
+								JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: 0 puntos de daño" );
+							}
 						}
 						if(vidaTemporal<=0) {
 							JOptionPane.showMessageDialog(null, "Has perdido");
 							menu.setVisible(true);
 							ventana.dispose();
-							miHilo.detener();
 						}else {
 							vidaAliado.setText(""+vidaTemporal);
-							token=0;
 							turnosUnidad= turnosUnidad+1;
 						}
-					JOptionPane.showMessageDialog(null, unidad.getNom()+ " te ha hecho: "+ daño+" puntos de daño" );
+					
 					}
-				}
 			}
-		}
+		
 	}
 	
 	

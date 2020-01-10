@@ -127,7 +127,9 @@ public class Unidad implements Atacante {
 		int daño=0;
 		int probabilidad= (int)(Math.random()*((100-1)+1))+1;
 		if(probabilidad<= 90) {
+			
 			daño = (int)(Math.random()*((i-1)+1))+1;
+			
 		}
 		
 		return daño;
@@ -139,7 +141,9 @@ public class Unidad implements Atacante {
 		int daño=0;
 		int probabilidad= (int)(Math.random()*((100-1)+1))+1;
 		if(probabilidad<= 40) {
+			
 			daño = (int)((Math.random()*((i-1)+1))+1)*2;
+			
 		}
 		
 		return daño;

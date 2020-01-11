@@ -40,6 +40,9 @@ public class VentanaPersonaje extends JFrame {
 	public JTextField tipoArmat = new JTextField();
 	public JTextField cascot = new JTextField();
 	public JTextField pecherat = new JTextField();
+	public JButton armas = new JButton("Armas");
+	public JButton cascos = new JButton("Cascos");
+	public JButton pecheras= new JButton("Pecheras");
 	
 	public JButton crearPersonaje= new JButton("Crear Personaje");
 	public JButton volver = new JButton("Volver");
@@ -53,7 +56,7 @@ public class VentanaPersonaje extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		JPanel panel1 = new JPanel();
-		panel1.setLayout(new MigLayout("", "[38px][7px][56px][7px][135.00px][18.00px][5.00px][13px][5px][54px][7px][71px][7px]", "[30.00px][30.00px][30.00][30.00][30.00][30.00][30.00][30.00][30.00][30.00][30.00]"));
+		panel1.setLayout(new MigLayout("", "[38px][7px][56px][7px][135.00px][18.00px][5.00px][13px][][5px][54px][7px][71px][7px]", "[30.00px][30.00px][30.00][30.00][30.00][30.00][30.00][30.00][30.00][30.00][30.00][]"));
 		panel1.add(nom, "cell 0 0,alignx left,aligny center");
 		panel1.add(nomt, "cell 4 0,growx,aligny center");
 		panel1.add(des, "cell 0 1,alignx left,aligny center");
@@ -75,15 +78,39 @@ public class VentanaPersonaje extends JFrame {
 		panel1.add(defMagt, "cell 4 6,growx,aligny center");
 		panel1.add(nombreArma, "cell 0 7");
 		panel1.add(nombreArmat, "cell 4 7,growx,aligny center");
+		
+		panel1.add(armas, "cell 8 7,grow");
 		panel1.add(tipoArma, "cell 0 8");
 		panel1.add(tipoArmat, "cell 4 8,growx,aligny center");
 		panel1.add(casco, "cell 0 9");
 		panel1.add(cascot, "cell 4 9,growx,aligny center");
+		
+		panel1.add(cascos, "cell 8 9,grow");
 		panel1.add(pechera, "cell 0 10");
 		panel1.add(pecherat, "cell 4 10,growx,aligny center");
+		
+		panel1.add(pecheras, "cell 8 10,grow");
 		getContentPane().add(panel2,BorderLayout.SOUTH);
 		
+		armas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaArmas armas = new VentanaArmas(menu);
+				armas.setVisible(true);
+			}
+		});
 		
+		cascos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaCascos cascos= new VentanaCascos(menu);
+				cascos.setVisible(true);
+			}
+		});
+		pecheras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaPecheras pecheras= new VentanaPecheras(menu);
+				pecheras.setVisible(true);
+			}
+		});
 		crearPersonaje.addActionListener(new ActionListener() {
 			
 			@Override

@@ -1,8 +1,10 @@
 package ui;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -30,24 +32,30 @@ public class VentanaSeleccion extends JFrame {
 	public JPanel panel1 = new JPanel();
 	public JButton volver = new JButton("Volver");
 	public JLabel nombre = new JLabel("Nombre");
-	public JButton buscarPersonaje = new JButton("Buscar Personaje");
+	public JButton buscarPersonaje = new JButton("Seleccionar personaje");
 	public JButton pelear = new JButton("Pelear");
-	public JTextField nombret = new JTextField();
-	public  VentanaSeleccion(VentanaMenu v) {
+	public JList<String> listaPersonajes;
+	public DefaultListModel<String> listModel= new DefaultListModel<String>();
+	public  VentanaSeleccion(VentanaMenu v)  {
 		
 		VentanaMenu menu = v;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(700,300,400,170);
+		setBounds(700,300,400,360);
 		setResizable(false);
 		
 		
 		
-		panel1.setLayout(new MigLayout("", "[11.00][106.00][55.00][79.00][75.00]", "[][][][13.00][]"));
+		panel1.setLayout(new MigLayout("", "[122.00][136.00][75.00]", "[][][210.00][13.00][]"));
 		getContentPane().add(panel1);
 		
-		
-		panel1.add(volver, "cell 1 0,alignx left,aligny center");
+		listModel=new DefaultListModel<String>();
+		try {
+			listModel.addAll(menu.miDB.obtenerAliados());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		panel1.add(volver, "cell 0 0,alignx left,aligny center");
 		volver.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -55,15 +63,16 @@ public class VentanaSeleccion extends JFrame {
 				ventana.dispose();
 			}
 		});
-	
-		panel1.add(nombre, "cell 2 1");
 		
-		panel1.add(nombret, "cell 3 1,growx,aligny center");
+			panel1.add(nombre, "cell 1 1");
+		
+		listaPersonajes = new JList<String>(listModel);
+		panel1.add(listaPersonajes,"cell 1 2,grow");
 		
 		
-		panel1.add(buscarPersonaje, "cell 1 4");
+		panel1.add(buscarPersonaje, "cell 0 4");
 		
-		panel1.add(pelear, "cell 4 4");
+		panel1.add(pelear, "cell 2 4");
 		
 		buscarPersonaje.addActionListener(new ActionListener() {
 			
@@ -71,7 +80,7 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 						try {
-							a = menu.miDB.obtenerAliado(nombret.getText());
+							a = menu.miDB.obtenerAliado(listModel.get(listaPersonajes.getSelectedIndex()));
 							if(a!= null) {
 								JOptionPane.showMessageDialog(null, "Personaje seleccionado con exito");
 							}else {

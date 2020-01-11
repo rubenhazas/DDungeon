@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 import datos.Aliado;
 import datos.Arma;
@@ -52,6 +52,59 @@ public class GestorDB {
 		
 		System.out.println("aliado guardado");
 	
+	}
+	
+	public List<String>obtenerAliados() throws SQLException{
+		String nombre ="";
+		List<String> nombres= new ArrayList<String>();
+		String sql = "SELECT nombre FROM aliado";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			nombre = rs.getString("nombre");
+			nombres.add(nombre);
+		}
+		return nombres;
+	}
+	
+	public List<String>getArmas()throws SQLException{
+		String nombre ="";
+		List<String> nombres= new ArrayList<String>();
+		String sql = "SELECT nombre FROM armas";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			nombre = rs.getString("nombre");
+			nombres.add(nombre);
+		}
+		return nombres;
+		
+	}
+	public List<String>getCascos()throws SQLException{
+		String nombre ="";
+		List<String> nombres= new ArrayList<String>();
+		String sql = "SELECT nombre FROM casco";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			nombre = rs.getString("nombre");
+			nombres.add(nombre);
+		}
+		return nombres;
+		
+	}
+	public List<String>getPecheras()throws SQLException{
+		String nombre ="";
+		List<String> nombres= new ArrayList<String>();
+		String sql = "SELECT nombre FROM pechera";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			nombre = rs.getString("nombre");
+			nombres.add(nombre);
+		}
+		return nombres;
+		
 	}
 	public void guardarArmadura(Armadura armadura,String tipo) throws SQLException{
 		String sql = "INSERT INTO " +tipo+" (nombre, descripcion, buffVida, buffDefFis, buffDefMag) VALUES(?,?,?,?,?)";

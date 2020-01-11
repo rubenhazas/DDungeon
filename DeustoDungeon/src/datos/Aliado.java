@@ -40,5 +40,11 @@ public class Aliado extends Unidad{
 	public void setPechera(Pechera pechera) {
 		this.pechera = pechera;
 	}
+
+	@Override
+	public String toString() {
+		return nom;
+	}
+	
 	
 }

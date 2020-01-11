@@ -1,7 +1,9 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,6 +45,8 @@ public class VentanaCombate extends JFrame {
 	public VentanaMenu menu= new VentanaMenu();
 	public HiloCombate miHilo= new HiloCombate();
 	
+	public JLabel fondo;
+	public JPanel panelFondo;
 	
 	public VentanaCombate(VentanaMenu v, Aliado a, Unidad u) {
 		menu= v;
@@ -52,24 +56,43 @@ public class VentanaCombate extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(700,300,500,300);
 		setResizable(false);
+		panelFondo= new JPanel();
+		fondo= new JLabel();
+		panelFondo.setBackground(new Color(0,0,0,0));
+		panelFondo.setLayout(null);
+		panel1.setBounds(0, 0, 494, 271);
+		panel1.setBackground(new Color(0,0,0,0));
+		panelFondo.add(panel1);
 		
-		getContentPane().add(panel1,BorderLayout.CENTER);
+		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoCombate1.png")));
+		fondo.setBounds(0, 0, 494, 271);
+		
+		
+		panelFondo.add(fondo);
+		
+		getContentPane().add(panelFondo);
 		panel1.setLayout(new MigLayout("", "[83.00px][][123px][][]", "[23px][][][][][][][50.00][][]"));
 		
 		panel1.add(volver, "cell 0 1,alignx center");
+		nombreAliado.setForeground(Color.WHITE);
 		
 		nombreAliado.setText(aliado.getNom());
 		
 		panel1.add(nombreAliado, "cell 2 5");
+		nombreUnidad.setForeground(Color.WHITE);
 		nombreUnidad.setText(unidad.getNom()+" el "+unidad.getRaza());
 		panel1.add(nombreUnidad, "cell 4 5");
+		vidaAli.setForeground(Color.WHITE);
 		
 		panel1.add(vidaAli, "cell 1 6");
+		vidaAliado.setForeground(Color.WHITE);
 		
 		vidaAliado.setText(""+(aliado.getVida()+aliado.getCasco().getBuffVida()+aliado.getPechera().getBuffVida()));
 		panel1.add(vidaAliado,"cell 2 6,alignx left,aligny center");
+		vidaUni.setForeground(Color.WHITE);
 		
 		panel1.add(vidaUni, "cell 3 6");
+		vidaUnidad.setForeground(Color.WHITE);
 		vidaUnidad.setText(""+unidad.getVida());
 		panel1.add(vidaUnidad, "cell 4 6");
 		

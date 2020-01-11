@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import net.miginfocom.swing.MigLayout;
+import java.awt.Color;
 
 public class VentanaSeleccion extends JFrame {
 
@@ -29,6 +31,7 @@ public class VentanaSeleccion extends JFrame {
 	public VentanaSeleccion ventana= this;
 	public Aliado a;
 	public Unidad u;
+	public JPanel panelFondo = new JPanel();
 	public JPanel panel1 = new JPanel();
 	public JButton volver = new JButton("Volver");
 	public JLabel nombre = new JLabel("Nombre");
@@ -36,6 +39,7 @@ public class VentanaSeleccion extends JFrame {
 	public JButton pelear = new JButton("Pelear");
 	public JList<String> listaPersonajes;
 	public DefaultListModel<String> listModel= new DefaultListModel<String>();
+	public JLabel fondo;
 	public  VentanaSeleccion(VentanaMenu v)  {
 		
 		VentanaMenu menu = v;
@@ -43,11 +47,13 @@ public class VentanaSeleccion extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(700,300,400,360);
 		setResizable(false);
+		panel1.setBackground(new Color(0, 0, 0,0));
+		panel1.setBounds(-3, 5, 401, 313);
 		
 		
 		
-		panel1.setLayout(new MigLayout("", "[122.00][136.00][75.00]", "[][][210.00][13.00][]"));
-		getContentPane().add(panel1);
+		panel1.setLayout(new MigLayout("", "[122.00][136.00][75.00][]", "[][][210.00][13.00][]"));
+		getContentPane().add(panelFondo);
 		
 		listModel=new DefaultListModel<String>();
 		try {
@@ -63,6 +69,8 @@ public class VentanaSeleccion extends JFrame {
 				ventana.dispose();
 			}
 		});
+			panelFondo.setLayout(null);
+			nombre.setForeground(Color.WHITE);
 		
 			panel1.add(nombre, "cell 1 1");
 		
@@ -74,6 +82,11 @@ public class VentanaSeleccion extends JFrame {
 		
 		panel1.add(pelear, "cell 2 4");
 		
+		panelFondo.add(panel1);
+		
+		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoSeleccion.png")));
+		fondo.setBounds(-3, 0, 397, 331);
+		panelFondo.add(fondo);
 		buscarPersonaje.addActionListener(new ActionListener() {
 			
 			@Override

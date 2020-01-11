@@ -10,12 +10,19 @@ import javax.swing.JPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import gestorDB.GestorDB;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Color;
 
 public class VentanaMenu extends JFrame {
 
@@ -34,6 +41,7 @@ public class VentanaMenu extends JFrame {
 	public JButton crearPersonajes = new JButton("Crear Personaje");
 	public JButton seleccionarPersonaje = new JButton("Seleccionar Personaje");
 	public JLabel titulo = new JLabel("DeustoDungeon");
+	public JLabel fondo;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -73,7 +81,6 @@ public class VentanaMenu extends JFrame {
 				
 			}
 		});	
-		
 		seleccionarPersonaje.setBounds(230,76,170,30);
 		panel.add(seleccionarPersonaje);
 		
@@ -86,10 +93,15 @@ public class VentanaMenu extends JFrame {
 				window.dispose();
 			}
 		});
+		titulo.setForeground(Color.WHITE);
 		
 		
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(140, 27,143,30);
 		panel.add(titulo);
+		
+		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoMenu.png")));
+		fondo.setBounds(0, 0, 444, 149);
+		panel.add(fondo);
 	}
 }

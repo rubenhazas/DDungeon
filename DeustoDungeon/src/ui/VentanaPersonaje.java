@@ -46,7 +46,8 @@ public class VentanaPersonaje extends JFrame {
 	
 	public JButton crearPersonaje= new JButton("Crear Personaje");
 	public JButton volver = new JButton("Volver");
-	
+	public JLabel fondo;
+	public JPanel panelFondo;
 	public VentanaPersonaje ventana= this;
 	
 	public VentanaPersonaje(VentanaMenu v) {
@@ -56,41 +57,71 @@ public class VentanaPersonaje extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		JPanel panel1 = new JPanel();
-		panel1.setLayout(new MigLayout("", "[38px][7px][56px][7px][135.00px][18.00px][5.00px][13px][][5px][54px][7px][71px][7px]", "[30.00px][30.00px][30.00][30.00][30.00][30.00][30.00][30.00][30.00][30.00][30.00][]"));
+		panel1.setBounds(10, 11, 384, 413);
+		panel1.setBackground(new Color(0,0,0,0));
+		panelFondo= new JPanel();
+		panelFondo.setLayout(null);
+		panelFondo.add(panel1);
+		
+		panel1.setLayout(new MigLayout("", "[38px][7px][7px][135.00px][18.00px][5.00px][13px][][5px]", "[30.00px][30.00px][30.00][30.00][30.00][30.00][30.00][30.00][30.00][30.00][30.00][]"));
+		nom.setForeground(Color.WHITE);
 		panel1.add(nom, "cell 0 0,alignx left,aligny center");
-		panel1.add(nomt, "cell 4 0,growx,aligny center");
+		panel1.add(nomt, "cell 3 0,growx,aligny center");
+		des.setForeground(Color.WHITE);
 		panel1.add(des, "cell 0 1,alignx left,aligny center");
-		panel1.add(dest, "cell 4 1,growx,aligny center");
+		panel1.add(dest, "cell 3 1,growx,aligny center");
 		JPanel panel2 = new JPanel();
+		panel2.setBounds(10, 423, 384, 48);
+		panel2.setBackground(new Color(0,0,0,0));
 		panel2.add(crearPersonaje);
 		panel2.add(volver);
 		
-		getContentPane().add(panel1,BorderLayout.CENTER);
+		panelFondo.add(panel2);
+		atkFis.setForeground(Color.WHITE);
+		
 		panel1.add(atkFis, "cell 0 2,alignx left,aligny center");
-		panel1.add(atkFist, "cell 4 2,growx,aligny center");
+		panel1.add(atkFist, "cell 3 2,growx,aligny center");
+		atkMag.setForeground(Color.WHITE);
 		panel1.add(atkMag, "cell 0 3,alignx left,aligny center");
-		panel1.add(atkMagt, "cell 4 3,growx,aligny center");
+		panel1.add(atkMagt, "cell 3 3,growx,aligny center");
+		vida.setForeground(Color.WHITE);
 		panel1.add(vida, "cell 0 4");
-		panel1.add(vidat, "cell 4 4,growx,aligny center");
+		panel1.add(vidat, "cell 3 4,growx,aligny center");
+		defFis.setForeground(Color.WHITE);
 		panel1.add(defFis, "cell 0 5,alignx left,aligny center");
-		panel1.add(defFist, "cell 4 5,growx,aligny center");
+		panel1.add(defFist, "cell 3 5,growx,aligny center");
+		defMag.setForeground(Color.WHITE);
 		panel1.add(defMag, "cell 0 6,alignx left,aligny center");
-		panel1.add(defMagt, "cell 4 6,growx,aligny center");
+		panel1.add(defMagt, "cell 3 6,growx,aligny center");
+		nombreArma.setForeground(Color.WHITE);
 		panel1.add(nombreArma, "cell 0 7");
-		panel1.add(nombreArmat, "cell 4 7,growx,aligny center");
+		panel1.add(nombreArmat, "cell 3 7,growx,aligny center");
 		
-		panel1.add(armas, "cell 8 7,grow");
+		panel1.add(armas, "cell 7 7,grow");
+		tipoArma.setForeground(Color.WHITE);
 		panel1.add(tipoArma, "cell 0 8");
-		panel1.add(tipoArmat, "cell 4 8,growx,aligny center");
+		panel1.add(tipoArmat, "cell 3 8,growx,aligny center");
+		casco.setForeground(Color.WHITE);
 		panel1.add(casco, "cell 0 9");
-		panel1.add(cascot, "cell 4 9,growx,aligny center");
+		panel1.add(cascot, "cell 3 9,growx,aligny center");
 		
-		panel1.add(cascos, "cell 8 9,grow");
+		panel1.add(cascos, "cell 7 9,grow");
+		pechera.setForeground(Color.WHITE);
 		panel1.add(pechera, "cell 0 10");
-		panel1.add(pecherat, "cell 4 10,growx,aligny center");
+		panel1.add(pecherat, "cell 3 10,growx,aligny center");
 		
-		panel1.add(pecheras, "cell 8 10,grow");
-		getContentPane().add(panel2,BorderLayout.SOUTH);
+		panel1.add(pecheras, "cell 7 10,grow");
+		
+		
+		
+		
+		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoCreacion.png")));
+		fondo.setBounds(0, 0, 394, 471);
+		panelFondo.add(fondo);
+		getContentPane().add(panelFondo);
+		
+		
+		
 		
 		armas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -1,7 +1,9 @@
 package ui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -15,6 +17,7 @@ public class VentanaArmas extends JFrame{
 	public VentanaMenu menu;
 	public VentanaArmas armas = this;
 	public JPanel panel = new JPanel();
+	public JLabel fondo;
 	public VentanaArmas(VentanaMenu m) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(700,300, 400, 300);
@@ -27,9 +30,15 @@ public class VentanaArmas extends JFrame{
 			listModel.addAll(menu.miDB.getArmas());
 		} catch (Exception e) {
 		}
-		panel.setLayout(new MigLayout("", "[36.00][364.00px][]", "[261px]"));
+		panel.setLayout(null);
 		listaArmas = new JList<String>(listModel);
-		panel.add(listaArmas, "cell 1 0,grow");
+		listaArmas.setBounds(10, 11, 180, 249);
+		panel.add(listaArmas);
+		
+		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoMenu.png")));
+		fondo.setBounds(0, 0, 394, 271);
+		panel.add(fondo);
+		
 		getContentPane().add(panel);
 		
 	}

@@ -1,7 +1,9 @@
 package ui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
@@ -14,7 +16,7 @@ public class VentanaPecheras extends JFrame {
 	public VentanaMenu menu;
 	public VentanaPecheras armas = this;
 	public JPanel panel = new JPanel();
-	
+	public JLabel fondo;
 	public VentanaPecheras(VentanaMenu m) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(700,300, 400, 300);
@@ -27,9 +29,13 @@ public class VentanaPecheras extends JFrame {
 			listModel.addAll(menu.miDB.getPecheras());
 		} catch (Exception e) {
 		}
-		panel.setLayout(new MigLayout("", "[36.00][364.00px][]", "[261px]"));
+		panel.setLayout(null);
 		listaCascos = new JList<String>(listModel);
-		panel.add(listaCascos, "cell 1 0,grow");
+		listaCascos.setBounds(11, 11, 180, 249);
+		panel.add(listaCascos);
+		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoMenu.png")));
+		fondo.setBounds(0, 0, 394, 271);
+		panel.add(fondo);
 		getContentPane().add(panel);
 		
 	}

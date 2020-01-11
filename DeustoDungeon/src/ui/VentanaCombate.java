@@ -64,37 +64,39 @@ public class VentanaCombate extends JFrame {
 		panel1.setBackground(new Color(0,0,0,0));
 		panelFondo.add(panel1);
 		
-		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoCombate1.png")));
-		fondo.setBounds(0, 0, 494, 271);
-		
-		
-		panelFondo.add(fondo);
+		//foto de fondo, pero al actualizar los labels funciona mal
+		//fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoCombate1.png")));
+		//fondo.setBounds(0, 0, 494, 271);
+		//panelFondo.add(fondo);
 		
 		getContentPane().add(panelFondo);
 		panel1.setLayout(new MigLayout("", "[83.00px][][123px][][]", "[23px][][][][][][][50.00][][]"));
 		
 		panel1.add(volver, "cell 0 1,alignx center");
-		nombreAliado.setForeground(Color.WHITE);
+		nombreAliado.setForeground(Color.BLACK);
 		
 		nombreAliado.setText(aliado.getNom());
 		
 		panel1.add(nombreAliado, "cell 2 5");
-		nombreUnidad.setForeground(Color.WHITE);
+		nombreUnidad.setForeground(Color.BLACK);
 		nombreUnidad.setText(unidad.getNom()+" el "+unidad.getRaza());
 		panel1.add(nombreUnidad, "cell 4 5");
-		vidaAli.setForeground(Color.WHITE);
+		vidaAli.setForeground(Color.BLACK);
 		
 		panel1.add(vidaAli, "cell 1 6");
-		vidaAliado.setForeground(Color.WHITE);
+		vidaAliado.setBackground(Color.WHITE);
+		vidaAliado.setForeground(Color.BLACK);
 		
 		vidaAliado.setText(""+(aliado.getVida()+aliado.getCasco().getBuffVida()+aliado.getPechera().getBuffVida()));
 		panel1.add(vidaAliado,"cell 2 6,alignx left,aligny center");
-		vidaUni.setForeground(Color.WHITE);
+		vidaUni.setForeground(Color.BLACK);
 		
 		panel1.add(vidaUni, "cell 3 6");
-		vidaUnidad.setForeground(Color.WHITE);
+		vidaUnidad.setBackground(Color.WHITE);
+		vidaUnidad.setForeground(Color.BLACK);
 		vidaUnidad.setText(""+unidad.getVida());
-		panel1.add(vidaUnidad, "cell 4 6");
+		vidaUnidad.setBackground(new Color(0,0,0,0));
+		panel1.add(vidaUnidad, "cell 4 6,alignx left,aligny center");
 		
 		panel1.add(ataquePrincipal, "cell 2 8");
 		

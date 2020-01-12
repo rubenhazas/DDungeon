@@ -27,7 +27,6 @@ public class GestorDB {
 		conn= DriverManager.getConnection("jdbc:sqlite:DB/DB.db");
 	}
 	public void desconectar() throws SQLException{
-		
 		conn.close();
 	}
 	

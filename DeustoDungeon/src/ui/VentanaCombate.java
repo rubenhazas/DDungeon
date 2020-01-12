@@ -43,8 +43,8 @@ public class VentanaCombate extends JFrame {
 	public JLabel vidaUnidad = new JLabel();
 	public JLabel nombreUnidad = new JLabel();
 	public VentanaMenu menu= new VentanaMenu();
-	public HiloCombate miHilo= new HiloCombate();
-	
+	public HiloCombate miHilo;
+	public int turno=0;
 	public JLabel fondo;
 	public JPanel panelFondo;
 	
@@ -52,18 +52,16 @@ public class VentanaCombate extends JFrame {
 		menu= v;
 		aliado= a;
 		unidad= u;
-		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(700,300,500,300);
 		setResizable(false);
 		panelFondo= new JPanel();
 		fondo= new JLabel();
-		panelFondo.setBackground(new Color(0,0,0,0));
+		//panelFondo.setBackground(new Color(0,0,0,0));
 		panelFondo.setLayout(null);
 		panel1.setBounds(0, 0, 494, 271);
-		panel1.setBackground(new Color(0,0,0,0));
+		//panel1.setBackground(new Color(0,0,0,0));
 		panelFondo.add(panel1);
-		
 		//foto de fondo, pero al actualizar los labels funciona mal
 		//fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoCombate1.png")));
 		//fondo.setBounds(0, 0, 494, 271);
@@ -101,6 +99,7 @@ public class VentanaCombate extends JFrame {
 		panel1.add(ataquePrincipal, "cell 2 8");
 		
 		panel1.add(ataqueSecundario, "cell 4 8");
+		
 		ataqueSecundario.addActionListener(new ActionListener() {
 			
 			@Override
@@ -178,10 +177,9 @@ public class VentanaCombate extends JFrame {
 	}
 	
 	
-	public class HiloCombate extends Thread {
+	public class HiloCombate implements Runnable {
 
 		public void run() {
-			
 				if(turnosUnidad==3) {
 						int daño=0;
 						int vidaTemporal = Integer.parseInt(vidaAliado.getText());
@@ -249,6 +247,7 @@ public class VentanaCombate extends JFrame {
 						}
 					
 					}
+				turno = 0;
 			}
 		
 	}

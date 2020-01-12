@@ -44,7 +44,7 @@ public class VentanaCombate extends JFrame {
 	public JLabel nombreUnidad = new JLabel();
 	public VentanaMenu menu= new VentanaMenu();
 	public HiloCombate miHilo = new HiloCombate();
-	public int turno=0;
+	//public int turno=0;
 	public JLabel fondo;
 	public JPanel panelFondo;
 	
@@ -247,7 +247,6 @@ public class VentanaCombate extends JFrame {
 						}
 					
 					}
-				turno = 0;
 			}
 		
 	}

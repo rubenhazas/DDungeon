@@ -43,7 +43,7 @@ public class VentanaCombate extends JFrame {
 	public JLabel vidaUnidad = new JLabel();
 	public JLabel nombreUnidad = new JLabel();
 	public VentanaMenu menu= new VentanaMenu();
-	public HiloCombate miHilo;
+	public HiloCombate miHilo = new HiloCombate();
 	public int turno=0;
 	public JLabel fondo;
 	public JPanel panelFondo;
@@ -177,7 +177,7 @@ public class VentanaCombate extends JFrame {
 	}
 	
 	
-	public class HiloCombate implements Runnable {
+	public class HiloCombate extends Thread {
 
 		public void run() {
 				if(turnosUnidad==3) {

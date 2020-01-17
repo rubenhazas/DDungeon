@@ -53,7 +53,7 @@ public class VentanaPersonaje extends JFrame {
 	public VentanaPersonaje(VentanaMenu v) {
 		VentanaMenu menu= v;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(700,300, 400, 500);
+		setBounds(500,300, 400, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		JPanel panel1 = new JPanel();

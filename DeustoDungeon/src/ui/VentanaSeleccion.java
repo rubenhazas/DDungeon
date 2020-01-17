@@ -45,7 +45,7 @@ public class VentanaSeleccion extends JFrame {
 		VentanaMenu menu = v;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(700,300,400,360);
+		setBounds(500,300,400,360);
 		setResizable(false);
 		panel1.setBackground(new Color(0, 0, 0,0));
 		panel1.setBounds(-3, 5, 401, 313);

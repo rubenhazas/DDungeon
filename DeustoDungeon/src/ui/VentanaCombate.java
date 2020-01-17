@@ -53,7 +53,7 @@ public class VentanaCombate extends JFrame {
 		aliado= a;
 		unidad= u;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(700,300,500,300);
+		setBounds(500,300,500,300);
 		setResizable(false);
 		panelFondo= new JPanel();
 		fondo= new JLabel();

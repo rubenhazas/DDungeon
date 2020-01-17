@@ -61,7 +61,7 @@ public class VentanaMenu extends JFrame {
 	 * Create the application.
 	 */
 	public VentanaMenu() {
-		window.setBounds(700, 300, 450, 175);
+		window.setBounds(500, 300, 450, 175);
 		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		window.setResizable(false);
 		JPanel panel = new JPanel(null);

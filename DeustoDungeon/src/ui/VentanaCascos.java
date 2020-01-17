@@ -21,7 +21,7 @@ public class VentanaCascos extends JFrame{
 	public JLabel fondo;
 	public VentanaCascos(VentanaMenu m) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(700,300, 400, 300);
+		setBounds(500,300, 400, 300);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		menu= m;

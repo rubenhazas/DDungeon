@@ -1,6 +1,5 @@
 package ui;
 
-
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +11,8 @@ import datos.Aliado;
 import datos.Unidad;
 import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 
 public class VentanaCombate extends JFrame {
@@ -37,11 +38,12 @@ public class VentanaCombate extends JFrame {
 	public JLabel nombreUnidad = new JLabel();
 	public VentanaMenu menu = new VentanaMenu();
 	public HiloCombate miHilo = new HiloCombate();
-	// public int turno=0;
 	public JLabel fondo;
 	public JPanel panelFondo;
+	private Logger logger = Logger.getLogger(VentanaCombate.class.getName());
 
 	public VentanaCombate(VentanaMenu v, Aliado a, Unidad u) {
+		logger.log(Level.INFO, "Creando la ventana de combate");
 		menu = v;
 		aliado = a;
 		unidad = u;
@@ -50,55 +52,47 @@ public class VentanaCombate extends JFrame {
 		setResizable(false);
 		panelFondo = new JPanel();
 		fondo = new JLabel();
-		// panelFondo.setBackground(new Color(0,0,0,0));
 		panelFondo.setLayout(null);
 		panel1.setBounds(0, 0, 494, 271);
-		// panel1.setBackground(new Color(0,0,0,0));
 		panelFondo.add(panel1);
-		// foto de fondo, pero al actualizar los labels funciona mal
-		// fondo = new JLabel(new
-		// ImageIcon(getClass().getResource("/resources/fondoCombate1.png")));
-		// fondo.setBounds(0, 0, 494, 271);
-		// panelFondo.add(fondo);
-
 		getContentPane().add(panelFondo);
 		panel1.setLayout(new MigLayout("", "[83.00px][][123px][][]", "[23px][][][][][][][50.00][][]"));
-
+		//boton para volver a la ventana anterior
 		panel1.add(volver, "cell 0 1,alignx center");
+		//JLabel del nombre del aliado
 		nombreAliado.setForeground(Color.BLACK);
-
 		nombreAliado.setText(aliado.getNom());
-
 		panel1.add(nombreAliado, "cell 2 5");
+		//JLabel del nombre del enemigo
 		nombreUnidad.setForeground(Color.BLACK);
 		nombreUnidad.setText(unidad.getNom() + " el " + unidad.getRaza());
 		panel1.add(nombreUnidad, "cell 4 5");
+		//JLabel de la vida del aliado
 		vidaAli.setForeground(Color.BLACK);
-
 		panel1.add(vidaAli, "cell 1 6");
+		//JLabel con la vida del aliado
 		vidaAliado.setBackground(Color.WHITE);
 		vidaAliado.setForeground(Color.BLACK);
-
-		vidaAliado
-				.setText("" + (aliado.getVida() + aliado.getCasco().getBuffVida() + aliado.getPechera().getBuffVida()));
+		vidaAliado.setText("" + (aliado.getVida() + aliado.getCasco().getBuffVida() + aliado.getPechera().getBuffVida()));
 		panel1.add(vidaAliado, "cell 2 6,alignx left,aligny center");
+		//JLabel de la vida del enemigo
 		vidaUni.setForeground(Color.BLACK);
-
 		panel1.add(vidaUni, "cell 3 6");
+		//JLabel con la vida del enemigo
 		vidaUnidad.setBackground(Color.WHITE);
 		vidaUnidad.setForeground(Color.BLACK);
 		vidaUnidad.setText("" + unidad.getVida());
 		vidaUnidad.setBackground(new Color(0, 0, 0, 0));
 		panel1.add(vidaUnidad, "cell 4 6,alignx left,aligny center");
-
+		//botones de ataque del jugador
 		panel1.add(ataquePrincipal, "cell 2 8");
-
 		panel1.add(ataqueSecundario, "cell 4 8");
-
+		//action listener del ataque secundario del jugador
 		ataqueSecundario.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//calculo del daño que hace el ataque secundario del jugador
 				int dañoExtra = 0;
 				int daño = 0;
 				int dañoTotal = 0;
@@ -117,25 +111,30 @@ public class VentanaCombate extends JFrame {
 					vidaTemporal = vidaTemporal - (dañoTotal);
 
 				}
+				logger.log(Level.INFO, "Ataque del jugador");
 				JOptionPane.showMessageDialog(null,
 						"Tu " + aliado.getArma().getTipo() + " ha hecho: " + daño + " puntos de daño");
 				if (vidaTemporal <= 0) {
 					JOptionPane.showMessageDialog(null, "Has ganado");
 					menu.setVisible(true);
+					logger.log(Level.INFO, "Se ha acabado el combate porque has ganado");
 					ventana.dispose();
 				} else {
 					vidaUnidad.setText("" + vidaTemporal);
+					logger.log(Level.INFO, "Turno del enemigo");
 					miHilo.run();
+
 				}
 
 			}
 
 		});
-
+		//listener del ataque principal del jugador
 		ataquePrincipal.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//calculo del daño que hace el ataque principal del jugador
 				int dañoExtra = 0;
 				int daño = 0;
 				int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
@@ -152,14 +151,17 @@ public class VentanaCombate extends JFrame {
 					dañoTotal = daño - unidad.getDefMag();
 					vidaTemporal = vidaTemporal - (dañoTotal);
 				}
+				logger.log(Level.INFO, "Ataque del jugador");
 				JOptionPane.showMessageDialog(null,
 						"Tu " + aliado.getArma().getTipo() + " ha hecho: " + dañoTotal + " puntos de daño");
 				if (vidaTemporal <= 0) {
 					JOptionPane.showMessageDialog(null, "Has ganado");
 					menu.setVisible(true);
+					logger.log(Level.INFO, "Se ha acabado el combate porque has ganado");
 					ventana.dispose();
 				} else {
 					vidaUnidad.setText("" + vidaTemporal);
+					logger.log(Level.INFO, "Turno del enemigo");
 					miHilo.run();
 				}
 			}
@@ -168,6 +170,7 @@ public class VentanaCombate extends JFrame {
 		volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menu.setVisible(true);
+				logger.log(Level.INFO, "Volviendo a la ventana anterior");
 				ventana.dispose();
 			}
 		});
@@ -178,6 +181,7 @@ public class VentanaCombate extends JFrame {
 
 		public void run() {
 			if (turnosUnidad == 3) {
+				//calculo del daño que hace el ataque secyndario del enemigo
 				int daño = 0;
 				int vidaTemporal = Integer.parseInt(vidaAliado.getText());
 				int dañoTotal = 0;
@@ -205,16 +209,18 @@ public class VentanaCombate extends JFrame {
 						JOptionPane.showMessageDialog(null, unidad.getNom() + " te ha hecho: 0 puntos de daño");
 					}
 				}
+				logger.log(Level.INFO, "Ataque del enemigo");
 				if (vidaTemporal <= 0) {
 					JOptionPane.showMessageDialog(null, "Has perdido");
+					logger.log(Level.INFO, "Se ha acabado el combate porque has perdido");
 					menu.setVisible(true);
 					ventana.dispose();
 				} else {
 					vidaAliado.setText("" + vidaTemporal);
 					turnosUnidad = 0;
 				}
-
 			} else {
+				//calculo del daño que hace el ataque principal del enemigo
 				int daño = 0;
 				int vidaTemporal = Integer.parseInt(vidaAliado.getText());
 				int dañoTotal = 0;
@@ -243,8 +249,10 @@ public class VentanaCombate extends JFrame {
 						JOptionPane.showMessageDialog(null, unidad.getNom() + " te ha hecho: 0 puntos de daño");
 					}
 				}
+				logger.log(Level.INFO, "Ataque del enemigo");
 				if (vidaTemporal <= 0) {
 					JOptionPane.showMessageDialog(null, "Has perdido");
+					logger.log(Level.INFO, "Se ha acabado el combate porque has perdido");
 					menu.setVisible(true);
 					ventana.dispose();
 				} else {

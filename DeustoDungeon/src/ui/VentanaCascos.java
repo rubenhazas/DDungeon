@@ -1,6 +1,7 @@
 package ui;
 
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -8,8 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-
-
 
 public class VentanaCascos extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -19,8 +18,10 @@ public class VentanaCascos extends JFrame {
 	public VentanaCascos armas = this;
 	public JPanel panel = new JPanel();
 	public JLabel fondo;
+	private Logger logger = Logger.getLogger(VentanaCascos.class.getName());
 
 	public VentanaCascos(VentanaMenu m) {
+		logger.log(Level.INFO, "Creando la ventana de cascos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 300, 400, 300);
 		setLocationRelativeTo(null);
@@ -29,6 +30,7 @@ public class VentanaCascos extends JFrame {
 		listModel = new DefaultListModel<String>();
 
 		try {
+			logger.log(Level.INFO, "Buscando cascos para el JList");
 			listModel.addAll(menu.miDB.getCascos());
 		} catch (Exception e) {
 		}

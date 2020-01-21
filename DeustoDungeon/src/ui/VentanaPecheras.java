@@ -1,5 +1,8 @@
 package ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,8 +18,9 @@ public class VentanaPecheras extends JFrame {
 	public VentanaPecheras armas = this;
 	public JPanel panel = new JPanel();
 	public JLabel fondo;
-
+	private Logger logger = Logger.getLogger(VentanaPecheras.class.getName());
 	public VentanaPecheras(VentanaMenu m) {
+		logger.log(Level.INFO, "Creando la ventana");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 300, 400, 300);
 		setLocationRelativeTo(null);
@@ -25,6 +29,7 @@ public class VentanaPecheras extends JFrame {
 		listModel = new DefaultListModel<String>();
 
 		try {
+			logger.log(Level.INFO, "Buscando pecheras para el JList");
 			listModel.addAll(menu.miDB.getPecheras());
 		} catch (Exception e) {
 		}

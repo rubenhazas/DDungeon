@@ -8,14 +8,15 @@ import org.junit.Test;
 import datos.Arma;
 
 public class ArmaTest {
-	private Arma a ; 
-	
+	private Arma a;
+
 	@Before
 	public void setUp() {
-	a = new Arma();
-	a.setNom("espada magica");
-	a.setBuffAtkFis(10);
+		a = new Arma();
+		a.setNom("espada magica");
+		a.setBuffAtkFis(10);
 	}
+
 	@Test
 	public void testGetNom() {
 		assertEquals("espada magica", a.getNom());

@@ -1,15 +1,15 @@
 package datos;
 
 public class Armadura {
-	
+
 	public String nom;
 	public String descripcion;
 	public int buffVida;
 	public int buffDefFis;
 	public int buffDefMag;
-	
+
 	public Armadura(String nom, String descripcion, int buffVida, int buffDefFis, int buffDefMag) {
-		
+
 		this.nom = nom;
 		this.descripcion = descripcion;
 		this.buffVida = buffVida;
@@ -18,7 +18,7 @@ public class Armadura {
 	}
 
 	public Armadura() {
-		
+
 	}
 
 	public String getNom() {
@@ -60,9 +60,5 @@ public class Armadura {
 	public void setBuffDefMag(int buffDefMag) {
 		this.buffDefMag = buffDefMag;
 	}
-	
-	
-	
-	
 
 }

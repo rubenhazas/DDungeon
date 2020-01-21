@@ -1,16 +1,17 @@
 package datos;
 
-public class Aliado extends Unidad{
-	
+public class Aliado extends Unidad {
+
 	public Arma arma;
 	public Casco casco;
 	public Pechera pechera;
 
-	public Aliado(String nom, String raza, String descripcion, int atkFis, int atkMag, int vida, int defFis, int defMag, Arma arma, Casco casco, Pechera pechera) {
-		super(nom,raza,descripcion,atkFis,atkMag,vida,defFis,defMag);
-		this.arma= arma;
-		this.casco=casco;
-		this.pechera=pechera;
+	public Aliado(String nom, String raza, String descripcion, int atkFis, int atkMag, int vida, int defFis, int defMag,
+			Arma arma, Casco casco, Pechera pechera) {
+		super(nom, raza, descripcion, atkFis, atkMag, vida, defFis, defMag);
+		this.arma = arma;
+		this.casco = casco;
+		this.pechera = pechera;
 	}
 
 	public Aliado() {
@@ -41,10 +42,12 @@ public class Aliado extends Unidad{
 		this.pechera = pechera;
 	}
 
+	/*
+	 * Metodo toString del aliado
+	 */
 	@Override
 	public String toString() {
 		return nom;
 	}
-	
-	
+
 }

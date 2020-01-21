@@ -11,15 +11,17 @@ import gestorDB.GestorDB;
 
 public class gestorDBTest {
 	private GestorDB db;
+
 	@Before
 	public void setUp() throws SQLException, ClassNotFoundException {
 		db = new GestorDB();
 		db.conectar();
-		
+
 	}
+
 	@Test
 	public void testObtenerAliado() throws SQLException {
-		
+
 		assertEquals("Javi", db.obtenerAliado("Javi").getNom());
 	}
 

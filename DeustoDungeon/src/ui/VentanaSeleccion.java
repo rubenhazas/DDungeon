@@ -9,9 +9,6 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import datos.Aliado;
-import datos.Unidad;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -19,6 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.miginfocom.swing.MigLayout;
+import unidades.Aliado;
+import unidades.Unidad;
+
 import java.awt.Color;
 
 public class VentanaSeleccion extends JFrame {

@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import datos.Aliado;
-import datos.Arma;
-import datos.Armadura;
-import datos.Casco;
-import datos.Pechera;
-import datos.Unidad;
+import objetos.Arma;
+import objetos.Armadura;
+import objetos.Casco;
+import objetos.Pechera;
+import unidades.Aliado;
+import unidades.Unidad;
 
 public class GestorDB {
 

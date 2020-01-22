@@ -1,4 +1,6 @@
-package datos;
+package unidades;
+
+import objetos.Atacante;
 
 public class Unidad implements Atacante {
 

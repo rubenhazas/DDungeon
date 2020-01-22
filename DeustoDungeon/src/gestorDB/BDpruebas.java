@@ -3,10 +3,10 @@ package gestorDB;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import datos.Arma;
-import datos.Armadura;
-import datos.Casco;
-import datos.Unidad;
+import objetos.Arma;
+import objetos.Armadura;
+import objetos.Casco;
+import unidades.Unidad;
 
 public class BDpruebas {
 

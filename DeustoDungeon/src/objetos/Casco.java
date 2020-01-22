@@ -1,4 +1,4 @@
-package datos;
+package objetos;
 
 public class Casco extends Armadura {
 

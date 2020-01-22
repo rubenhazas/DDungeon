@@ -1,4 +1,8 @@
-package datos;
+package unidades;
+
+import objetos.Arma;
+import objetos.Casco;
+import objetos.Pechera;
 
 public class Aliado extends Unidad {
 

@@ -1,4 +1,4 @@
-package datos;
+package objetos;
 	/*
 	Interfaz de la que heredan las clases que efectuan los ataques como el enemigo y las armas de los aliados
 	 */

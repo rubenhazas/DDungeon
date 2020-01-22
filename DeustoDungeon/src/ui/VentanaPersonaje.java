@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 
 import javax.swing.*;
 
-import datos.Unidad;
 import net.miginfocom.swing.MigLayout;
+import unidades.Unidad;
 
 public class VentanaPersonaje extends JFrame {
 

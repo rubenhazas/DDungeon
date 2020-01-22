@@ -7,9 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import datos.Aliado;
-import datos.Unidad;
 import net.miginfocom.swing.MigLayout;
+import unidades.Aliado;
+import unidades.Unidad;
+
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;

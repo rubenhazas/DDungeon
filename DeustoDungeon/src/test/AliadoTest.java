@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import datos.Aliado;
-import datos.Arma;
-import datos.Casco;
-import datos.Pechera;
+import objetos.Arma;
+import objetos.Casco;
+import objetos.Pechera;
+import unidades.Aliado;
 
 public class AliadoTest {
 

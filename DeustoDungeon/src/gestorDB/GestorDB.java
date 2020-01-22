@@ -16,6 +16,7 @@ import objetos.Casco;
 import objetos.Pechera;
 import unidades.Aliado;
 import unidades.Unidad;
+import usuario.User;
 
 public class GestorDB {
 
@@ -335,5 +336,53 @@ public class GestorDB {
 		}
 		logger.log(Level.INFO, "Obteniendo pechera");
 		return p;
+	}
+
+	/*
+	 * Metodo para guardar Usuarios en la BD
+	 */
+	public void guardarUser(User user) throws SQLException {
+		String sql = ("INSERT INTO users (nombre, password, admin) VALUES (?,?,?)");
+
+		PreparedStatement stmt = conn.prepareStatement(sql);
+
+		stmt.setString(1, user.getUser());
+		stmt.setString(2, user.getPass());
+		stmt.setBoolean(3, user.isAdmin());
+		stmt.executeUpdate();
+		logger.log(Level.INFO, "Usuario guardado");
+
+	}
+	/*
+	 * Metodo para comprobar usuarios de la BD
+	 */
+	public int comprobarUser(String user,String pass) throws SQLException{
+		User u =new User();
+		
+		String sql = "SELECT nombre, password, admin FROM users WHERE nombre = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		try {
+			stmt.setString(1, user);
+			
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				u.setUser(rs.getString("nombre"));
+				u.setPass(rs.getString("password"));
+				u.setAdmin(rs.getBoolean("admin"));
+			}else {
+				return 0;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		if(u.isAdmin()==true) {
+			return 2;
+		}else {
+			return 1;
+		}
+	
 	}
 }

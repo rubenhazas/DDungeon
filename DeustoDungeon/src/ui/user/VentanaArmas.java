@@ -1,4 +1,4 @@
-package ui;
+package ui.user;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import gestorDB.GestorDB;
+import ui.main.VentanaMenu;
 
 public class VentanaArmas extends JFrame {
 

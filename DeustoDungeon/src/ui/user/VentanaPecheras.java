@@ -1,4 +1,4 @@
-package ui;
+package ui.user;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import ui.main.VentanaMenu;
 
 public class VentanaPecheras extends JFrame {
 	private static final long serialVersionUID = 1L;

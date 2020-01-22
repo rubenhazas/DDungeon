@@ -1,4 +1,4 @@
-package ui;
+package ui.main;
 
 import java.awt.EventQueue;
 
@@ -17,6 +17,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import gestorDB.GestorDB;
+import ui.user.VentanaPersonaje;
+import ui.user.VentanaSeleccion;
+
 import java.awt.Font;
 
 import java.awt.Color;
@@ -31,34 +34,23 @@ public class VentanaMenu extends JFrame {
 	 * Launch the application.
 	 */
 	private VentanaMenu window = this;
-	static GestorDB miDB;
-	static Connection miConexion;
-
+	
 	public JButton crearPersonajes = new JButton("Crear Personaje");
 	public JButton seleccionarPersonaje = new JButton("Seleccionar Personaje");
 	public JLabel titulo = new JLabel("DeustoDungeon");
 	public JLabel fondo;
 	private Logger logger = Logger.getLogger(VentanaMenu.class.getName());
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					miDB = new GestorDB();
-					miDB.conectar();
-					VentanaMenu window = new VentanaMenu();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public static GestorDB miDB;
+	public static Connection miConexion;
+
 
 	/**
 	 * Create the application.
 	 */
-	public VentanaMenu() {
+	public VentanaMenu(GestorDB bd, Connection conn) {
+		this.miDB = bd;
+		this.miConexion =conn;
 		logger.log(Level.INFO, "Creando la ventana");
 		window.setBounds(500, 300, 450, 175);
 		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -1,4 +1,4 @@
-package ui;
+package ui.user;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
+import ui.main.VentanaMenu;
 import unidades.Unidad;
 
 public class VentanaPersonaje extends JFrame {

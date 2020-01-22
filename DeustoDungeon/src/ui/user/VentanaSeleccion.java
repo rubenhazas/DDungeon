@@ -1,4 +1,4 @@
-package ui;
+package ui.user;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.miginfocom.swing.MigLayout;
+import ui.main.VentanaMenu;
 import unidades.Aliado;
 import unidades.Unidad;
 

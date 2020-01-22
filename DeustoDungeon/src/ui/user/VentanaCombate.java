@@ -1,4 +1,4 @@
-package ui;
+package ui.user;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
+import ui.main.VentanaMenu;
 import unidades.Aliado;
 import unidades.Unidad;
 
@@ -37,7 +38,7 @@ public class VentanaCombate extends JFrame {
 	public JLabel vidaAliado = new JLabel();
 	public JLabel vidaUnidad = new JLabel();
 	public JLabel nombreUnidad = new JLabel();
-	public VentanaMenu menu = new VentanaMenu();
+	public VentanaMenu menu;
 	public HiloCombate miHilo = new HiloCombate();
 	public JLabel fondo;
 	public JPanel panelFondo;

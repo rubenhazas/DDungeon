@@ -82,7 +82,6 @@ public class VentanaLogin extends JFrame{
 					miDB.guardarUser(new User(textFieldNombre.getText(), textFieldPassword.getText(),0));
 					logger.log(Level.INFO,"Usuario registrado");
 				} catch (Exception e2) {
-					// TODO: handle exception
 				}
 				
 			}

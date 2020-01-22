@@ -80,7 +80,34 @@ public class GestorDB {
 		logger.log(Level.INFO, "Obteniendo aliados");
 		return nombres;
 	}
-
+	/*
+	 * Metodo para eliminar personajes
+	 */
+	public void eliminarUnidad(String nombre) throws SQLException {
+		String sql = "DELETE FROM unidad WHERE nombre = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		stmt.setString(1, nombre);
+		
+		stmt.executeUpdate();
+	}
+	/*
+	 * Metodo para rellenar el JList de enemigos en la ventana de admin
+	 */
+	public List<String> obtenerEnemigos() throws SQLException {
+		String nombre = "";
+		List<String> nombres = new ArrayList<String>();
+		String sql = "SELECT nombre FROM unidad";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			nombre = rs.getString("nombre");
+			nombres.add(nombre);
+		}
+		logger.log(Level.INFO, "Obteniendo enemigos");
+		return nombres;
+	}
 	/*
 	 * Metodo para rellenar el JList de armas de la ventana que muestra las armas de
 	 * la BD

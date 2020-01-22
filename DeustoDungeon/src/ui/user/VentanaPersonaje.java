@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import javax.swing.*;
 
+import gestorDB.GestorDB;
 import net.miginfocom.swing.MigLayout;
 import ui.main.VentanaMenu;
 import unidades.Unidad;
@@ -52,10 +53,17 @@ public class VentanaPersonaje extends JFrame {
 	public JLabel fondo;
 	public JPanel panelFondo;
 	public VentanaPersonaje ventana = this;
+	public GestorDB miDB;
 	private Logger logger = Logger.getLogger(VentanaPersonaje.class.getName());
 
 	public VentanaPersonaje(VentanaMenu v) {
 		logger.log(Level.INFO, "Creando la ventana de creacion de personaje");
+		try {
+			miDB = new GestorDB();
+			miDB.conectar();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		VentanaMenu menu = v;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 300, 400, 500);
@@ -164,8 +172,9 @@ public class VentanaPersonaje extends JFrame {
 				try {
 					if (tipoArmat.getText().contentEquals("espada") || tipoArmat.getText().contentEquals("arco")
 							|| tipoArmat.getText().contentEquals("baston")) {
-						menu.miDB.guardarAliado(unidad, nombreArmat.getText(), tipoArmat.getText(), cascot.getText(),
+						miDB.guardarAliado(unidad, nombreArmat.getText(), tipoArmat.getText(), cascot.getText(),
 								pecherat.getText());
+						miDB.desconectar();
 						JOptionPane.showMessageDialog(null, "Personaje creado con exito");
 						logger.log(Level.INFO, "Personaje creado");
 					} else {

@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+import gestorDB.GestorDB;
 import ui.main.VentanaMenu;
 
 public class VentanaPecheras extends JFrame {
@@ -20,8 +21,15 @@ public class VentanaPecheras extends JFrame {
 	public VentanaPecheras armas = this;
 	public JPanel panel = new JPanel();
 	public JLabel fondo;
+	public GestorDB miDB;
 	private Logger logger = Logger.getLogger(VentanaPecheras.class.getName());
 	public VentanaPecheras(VentanaMenu m) {
+		try {
+			miDB = new GestorDB();
+			miDB.conectar();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		logger.log(Level.INFO, "Creando la ventana");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 300, 400, 300);
@@ -32,7 +40,8 @@ public class VentanaPecheras extends JFrame {
 
 		try {
 			logger.log(Level.INFO, "Buscando pecheras para el JList");
-			listModel.addAll(menu.miDB.getPecheras());
+			listModel.addAll(miDB.getPecheras());
+			miDB.desconectar();
 		} catch (Exception e) {
 		}
 		panel.setLayout(null);

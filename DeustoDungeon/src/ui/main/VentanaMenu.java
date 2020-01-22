@@ -1,6 +1,6 @@
 package ui.main;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import java.sql.Connection;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,17 +40,19 @@ public class VentanaMenu extends JFrame {
 	public JLabel titulo = new JLabel("DeustoDungeon");
 	public JLabel fondo;
 	private Logger logger = Logger.getLogger(VentanaMenu.class.getName());
-
-	public static GestorDB miDB;
-	public static Connection miConexion;
-
-
+	public VentanaLogin ventanaLogin;
+	public GestorDB miDB;
 	/**
 	 * Create the application.
 	 */
-	public VentanaMenu(GestorDB bd, Connection conn) {
-		this.miDB = bd;
-		this.miConexion =conn;
+	public VentanaMenu(VentanaLogin login) {
+		ventanaLogin = login;
+		try {
+			miDB = new GestorDB();
+			miDB.conectar();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		logger.log(Level.INFO, "Creando la ventana");
 		window.setBounds(500, 300, 450, 175);
 		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

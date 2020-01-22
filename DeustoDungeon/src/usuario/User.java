@@ -4,15 +4,15 @@ public class User {
 
 	public String user;
 	public String pass;
-	public boolean admin;
+	public int admin;
 
 	public User() {
 		user = "";
 		pass = "";
-		admin = false;
+		admin = 0;
 	}
 
-	public User(String user, String pass, boolean admin) {
+	public User(String user, String pass, int admin) {
 		this.user = user;
 		this.pass = pass;
 		this.admin = admin;
@@ -34,11 +34,11 @@ public class User {
 		this.pass = pass;
 	}
 
-	public boolean isAdmin() {
+	public int isAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(boolean admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
 }

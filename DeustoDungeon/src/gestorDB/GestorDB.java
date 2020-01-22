@@ -62,7 +62,26 @@ public class GestorDB {
 		logger.log(Level.INFO, "Aliado guardado");
 
 	}
+	/*
+	 * Metodo para guardar enemigos en la BD
+	 */
+	public void guardarUnidad(Unidad unidad, int i) throws SQLException {
+		
+		String sql = "INSERT INTO unidad (numero, nombre, descripcion, atkFis, atkMag, vida, defFis, defMag, raza) VALUES (?,?,?,?,?,?,?,?,?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, i);
+		stmt.setString(2, unidad.getNom());
+		stmt.setString(3, unidad.getDescripcion());
+		stmt.setInt(4, unidad.getAtkFis());
+		stmt.setInt(5, unidad.getAtkMag());
+		stmt.setInt(6, unidad.getVida());
+		stmt.setInt(7, unidad.getDefFis());
+		stmt.setInt(8, unidad.getDefMag());
+		stmt.setString(9, unidad.getRaza());
+		stmt.executeUpdate();
 
+		logger.log(Level.INFO, "Enemigo guardado");
+	}
 	/*
 	 * Metodo para rellenar el JList de aliados en la ventana de seleccion de
 	 * personaje
@@ -106,6 +125,7 @@ public class GestorDB {
 		stmt.executeUpdate();
 		logger.log(Level.INFO, "Enemigo eliminado");
 	}
+	
 	/*
 	 * Metodo para rellenar el JList de enemigos en la ventana de admin
 	 */
@@ -122,6 +142,7 @@ public class GestorDB {
 		logger.log(Level.INFO, "Obteniendo enemigos");
 		return nombres;
 	}
+	
 	/*
 	 * Metodo para rellenar el JList de armas de la ventana que muestra las armas de
 	 * la BD
@@ -389,7 +410,7 @@ public class GestorDB {
 
 		stmt.setString(1, user.getUser());
 		stmt.setString(2, user.getPass());
-		stmt.setBoolean(3, user.isAdmin());
+		stmt.setInt(3,user.isAdmin());
 		stmt.executeUpdate();
 		logger.log(Level.INFO, "Usuario guardado");
 
@@ -411,7 +432,7 @@ public class GestorDB {
 			if(rs.next()) {
 				u.setUser(rs.getString("nombre"));
 				u.setPass(rs.getString("password"));
-				u.setAdmin(rs.getBoolean("admin"));
+				u.setAdmin(rs.getInt("admin"));
 			}else {
 				logger.log(Level.INFO, "Usuario no encontrado");
 				return 0;
@@ -420,7 +441,7 @@ public class GestorDB {
 			// TODO: handle exception
 		}
 		
-		if(u.isAdmin()==true) {
+		if(u.isAdmin()==1) {
 			logger.log(Level.INFO, "Usuario administrador encontrado");
 			return 2;
 		}else {

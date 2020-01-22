@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+import gestorDB.GestorDB;
 import ui.main.VentanaMenu;
 
 public class VentanaCascos extends JFrame {
@@ -20,10 +21,17 @@ public class VentanaCascos extends JFrame {
 	public VentanaCascos armas = this;
 	public JPanel panel = new JPanel();
 	public JLabel fondo;
+	public GestorDB miDB;
 	private Logger logger = Logger.getLogger(VentanaCascos.class.getName());
 
 	public VentanaCascos(VentanaMenu m) {
 		logger.log(Level.INFO, "Creando la ventana de cascos");
+		try {
+			miDB = new GestorDB();
+			miDB.conectar();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 300, 400, 300);
 		setLocationRelativeTo(null);
@@ -33,7 +41,8 @@ public class VentanaCascos extends JFrame {
 
 		try {
 			logger.log(Level.INFO, "Buscando cascos para el JList");
-			listModel.addAll(menu.miDB.getCascos());
+			listModel.addAll(miDB.getCascos());
+			miDB.desconectar();
 		} catch (Exception e) {
 		}
 		panel.setLayout(null);

@@ -22,10 +22,19 @@ public class VentanaArmas extends JFrame {
 	public VentanaArmas armas = this;
 	public JPanel panel = new JPanel();
 	public JLabel fondo;
+	public GestorDB miDB;
 	private Logger logger = Logger.getLogger(VentanaArmas.class.getName());
 
 	public VentanaArmas(VentanaMenu m) {
 		logger.log(Level.INFO, "Creando la ventana de armas");
+		try {
+			miDB = new GestorDB();
+			miDB.conectar();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 300, 400, 300);
 		setLocationRelativeTo(null);
@@ -36,7 +45,8 @@ public class VentanaArmas extends JFrame {
 
 		try {
 			logger.log(Level.INFO, "Buscando armas para el JList");
-			listModel.addAll(menu.miDB.getArmas());
+			listModel.addAll(miDB.getArmas());
+			miDB.desconectar();
 		} catch (Exception e) {
 		}
 		panel.setLayout(null);

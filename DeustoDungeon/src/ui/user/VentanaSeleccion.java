@@ -9,6 +9,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import gestorDB.GestorDB;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -41,8 +43,15 @@ public class VentanaSeleccion extends JFrame {
 	public JList<String> listaPersonajes;
 	public DefaultListModel<String> listModel = new DefaultListModel<String>();
 	public JLabel fondo;
+	public GestorDB miDB;
 	private Logger logger = Logger.getLogger(VentanaSeleccion.class.getName());
 	public VentanaSeleccion(VentanaMenu v) {
+		try {
+			miDB = new GestorDB();
+			miDB.conectar();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		logger.log(Level.INFO, "Creando la ventana de seleccion de personajes");
 		VentanaMenu menu = v;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -58,7 +67,7 @@ public class VentanaSeleccion extends JFrame {
 		
 		try {
 			logger.log(Level.INFO, "Buscando personajes para el JList");
-			listModel.addAll(menu.miDB.obtenerAliados());
+			listModel.addAll(miDB.obtenerAliados());
 		} catch (Exception e) {
 		}
 		panel1.add(volver, "cell 0 0,alignx left,aligny center");
@@ -95,7 +104,8 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					a = menu.miDB.obtenerAliado(listModel.get(listaPersonajes.getSelectedIndex()));
+					a = miDB.obtenerAliado(listModel.get(listaPersonajes.getSelectedIndex()));
+					
 					logger.log(Level.INFO, "Seleccionando el personaje");
 					if (a != null) {
 						logger.log(Level.INFO, "Personaje seleccionado con exito");
@@ -117,8 +127,9 @@ public class VentanaSeleccion extends JFrame {
 				logger.log(Level.INFO, "Comenzando el combate");
 				logger.log(Level.INFO, "Seleccionando enemigo");
 				try {
-					int i = (int) (Math.random() * ((menu.miDB.obtenerEnemigos().size() - 1) + 1)) + 1;
-					u = menu.miDB.obtenerUnidad(i);
+					int i = (int) (Math.random() * ((miDB.obtenerEnemigos().size() - 1) + 1)) + 1;
+					u = miDB.obtenerUnidad(i);
+					miDB.desconectar();
 				} catch (Exception e2) {
 					// TODO: handle exception
 				}

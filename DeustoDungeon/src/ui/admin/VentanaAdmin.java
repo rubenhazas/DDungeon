@@ -26,6 +26,11 @@ public class VentanaAdmin extends JFrame {
 	public JButton btnBorrarPersonajes;
 	public VentanaAdmin window = this;
 	public DefaultListModel<String> listModel;
+	public DefaultListModel<String> listModelEnemigos;
+	public JList<String> listEnemigos;
+	public JButton btnBorrarEnemigos;
+	public JButton btnAñadirEnemigos;
+	public JLabel lblEnemigos;
 	public GestorDB miDB;
 	public Connection miConnection;
 	private Logger logger = Logger.getLogger(VentanaAdmin.class.getName());
@@ -39,6 +44,8 @@ public class VentanaAdmin extends JFrame {
 		try {
 			logger.log(Level.INFO, "Buscando los personajes");
 			listModel.addAll(miDB.obtenerAliados());
+			logger.log(Level.INFO, "Buscando los enemigos");
+			listModelEnemigos.addAll(miDB.obtenerEnemigos());
 		} catch (Exception e) {
 		}
 
@@ -54,14 +61,41 @@ public class VentanaAdmin extends JFrame {
 		btnBorrarPersonajes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					miDB.eliminarUnidad(listModel.get(listPersonajes.getSelectedIndex()));
+					logger.log(Level.INFO, "Intentando eliminar un personaje");
+					miDB.eliminarAliado(listModel.get(listPersonajes.getSelectedIndex()));
 				} catch (Exception e2) {
-					// TODO: handle exception
 				}
 			}
 		});
 		btnBorrarPersonajes.setBounds(120, 32, 89, 23);
 		getContentPane().add(btnBorrarPersonajes);
+		
+		listEnemigos = new JList<String>();
+		listEnemigos.setBounds(324, 35, 100, 215);
+		getContentPane().add(listEnemigos);
+		
+		lblEnemigos = new JLabel("Enemigos");
+		lblEnemigos.setBounds(324, 11, 100, 14);
+		getContentPane().add(lblEnemigos);
+		
+		btnAñadirEnemigos = new JButton();
+		btnAñadirEnemigos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					logger.log(Level.INFO, "Intentando eliminar un enemigo");
+					miDB.eliminarUnidad(listModel.get(listPersonajes.getSelectedIndex()));
+				} catch (Exception e2) {
+				}
+			}
+		});
+		btnAñadirEnemigos.setText("Borrar");
+		btnAñadirEnemigos.setBounds(231, 32, 83, 23);
+		getContentPane().add(btnAñadirEnemigos);
+		
+		btnBorrarEnemigos  = new JButton();
+		btnBorrarEnemigos.setText("A\u00F1adir");
+		btnBorrarEnemigos.setBounds(231, 66, 83, 23);
+		getContentPane().add(btnBorrarEnemigos);
 
 	}
 }

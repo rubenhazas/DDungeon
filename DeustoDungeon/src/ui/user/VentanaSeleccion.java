@@ -116,13 +116,11 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Comenzando el combate");
 				logger.log(Level.INFO, "Seleccionando enemigo");
-				int i = (int) (Math.random() * ((6 - 1) + 1)) + 1;
-
 				try {
+					int i = (int) (Math.random() * ((menu.miDB.obtenerEnemigos().size() - 1) + 1)) + 1;
 					u = menu.miDB.obtenerUnidad(i);
-
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				} catch (Exception e2) {
+					// TODO: handle exception
 				}
 				VentanaCombate ventanaCombate = new VentanaCombate(menu, a, u);
 				ventanaCombate.setVisible(true);

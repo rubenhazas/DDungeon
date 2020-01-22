@@ -83,6 +83,19 @@ public class GestorDB {
 	/*
 	 * Metodo para eliminar personajes
 	 */
+	public void eliminarAliado(String nombre) throws SQLException {
+		String sql = "DELETE FROM aliado WHERE nombre = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		stmt.setString(1, nombre);
+		
+		stmt.executeUpdate();
+		logger.log(Level.INFO, "Personaje eliminado");
+	}
+	/*
+	 * Metodo para eliminar enemigos
+	 */
 	public void eliminarUnidad(String nombre) throws SQLException {
 		String sql = "DELETE FROM unidad WHERE nombre = ?";
 		
@@ -91,6 +104,7 @@ public class GestorDB {
 		stmt.setString(1, nombre);
 		
 		stmt.executeUpdate();
+		logger.log(Level.INFO, "Enemigo eliminado");
 	}
 	/*
 	 * Metodo para rellenar el JList de enemigos en la ventana de admin
@@ -399,6 +413,7 @@ public class GestorDB {
 				u.setPass(rs.getString("password"));
 				u.setAdmin(rs.getBoolean("admin"));
 			}else {
+				logger.log(Level.INFO, "Usuario no encontrado");
 				return 0;
 			}
 		} catch (Exception e) {
@@ -406,8 +421,10 @@ public class GestorDB {
 		}
 		
 		if(u.isAdmin()==true) {
+			logger.log(Level.INFO, "Usuario administrador encontrado");
 			return 2;
 		}else {
+			logger.log(Level.INFO, "Usuario encontrado");
 			return 1;
 		}
 	

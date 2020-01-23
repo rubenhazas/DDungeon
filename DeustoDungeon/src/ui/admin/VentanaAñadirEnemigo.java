@@ -19,10 +19,10 @@ import gestorDB.GestorDB;
 import net.miginfocom.swing.MigLayout;
 import unidades.Unidad;
 
-public class VentanaAñadirEnemigo extends JFrame{
+public class VentanaAñadirEnemigo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	public JLabel nom = new JLabel("Nombre");
 	public JLabel des = new JLabel("Descripcion");
 	public JLabel atkFis = new JLabel("Ataque Fisico");
@@ -31,7 +31,7 @@ public class VentanaAñadirEnemigo extends JFrame{
 	public JLabel defFis = new JLabel("Defensa Fisica");
 	public JLabel defMag = new JLabel("Defensa Magica");
 	public JLabel raza = new JLabel("Raza");
-	
+
 	public JTextField nomt = new JTextField();
 	public JTextField dest = new JTextField();
 	public JTextField atkFist = new JTextField();
@@ -40,16 +40,16 @@ public class VentanaAñadirEnemigo extends JFrame{
 	public JTextField defFist = new JTextField();
 	public JTextField defMagt = new JTextField();
 	public JTextField razat = new JTextField();
-	
+
 	public JButton crearPersonaje = new JButton("Crear Personaje");
-	public JButton volver = new JButton ("Volver");
+	public JButton volver = new JButton("Volver");
 	public JLabel fondo;
 	public JPanel panelFondo;
 	public VentanaAñadirEnemigo window = this;
 	public VentanaAdmin ventanaAdmin;
 	public GestorDB miDB;
 	private Logger logger = Logger.getLogger(VentanaAñadirEnemigo.class.getName());
-	
+
 	public VentanaAñadirEnemigo(VentanaAdmin v, int i) {
 		ventanaAdmin = v;
 		try {
@@ -69,7 +69,8 @@ public class VentanaAñadirEnemigo extends JFrame{
 		panelFondo.setLayout(null);
 		panelFondo.add(panel1);
 		// añadir todos los elementos al panel
-		panel1.setLayout(new MigLayout("", "[98.00px][135.00px][51.00px][87.00px]", "[30.00px][30.00px][30.00][30.00][30.00][30.00][30.00][30.00]"));
+		panel1.setLayout(new MigLayout("", "[98.00px][135.00px][51.00px][87.00px]",
+				"[30.00px][30.00px][30.00][30.00][30.00][30.00][30.00][30.00]"));
 		// JLabel y JTextField del nombre
 		nom.setForeground(Color.WHITE);
 		panel1.add(nom, "cell 0 0,alignx left,aligny center");
@@ -84,7 +85,7 @@ public class VentanaAñadirEnemigo extends JFrame{
 		panel2.setBackground(new Color(0, 0, 0, 0));
 		panel2.add(crearPersonaje);
 		panel2.add(volver);
-		
+
 		panelFondo.add(panel2);
 		// JLabel y JTextField del ataque
 		atkFis.setForeground(Color.WHITE);
@@ -111,46 +112,49 @@ public class VentanaAñadirEnemigo extends JFrame{
 		raza.setForeground(Color.WHITE);
 		panel1.add(raza, "cell 0 7");
 		panel1.add(razat, "cell 1 7,growx");
-		
+
 		// Imagen de fondo de la ventana
 		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoCreacion.png")));
 		fondo.setBounds(0, 0, 394, 382);
 		panelFondo.add(fondo);
 		getContentPane().add(panelFondo);
-		
-		// listener del boton de crear enemigos
-				crearPersonaje.addActionListener(new ActionListener() {
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						logger.log(Level.INFO, "Creando el enemigo");
-						
-						Unidad unidad = new Unidad(nomt.getText(),razat.getText(), dest.getText(), Integer.parseInt(atkFist.getText()), Integer.parseInt(atkMagt.getText()),Integer.parseInt(vidat.getText()), Integer.parseInt(defFist.getText()),Integer.parseInt(defMagt.getText()));
-								
-						try {
-								//System.out.println(i);
-								int a = i+1;
-								miDB.guardarUnidad(unidad,a);
-									
-								JOptionPane.showMessageDialog(null, "Enemigo creado con exito");
-								logger.log(Level.INFO, "Enemigo creado");
-							} catch (Exception e2) {
-							}
-					}
-				});
-				
-				volver.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						VentanaAdmin admin = new VentanaAdmin(v.loginWindow);
-						admin.setVisible(true);
-						window.dispose();
-						try {
-							miDB.desconectar();
-						} catch (Exception e2) {
-							// TODO: handle exception
-						}
-					}
-				});
+		// listener del boton de crear enemigos
+		crearPersonaje.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "Creando el enemigo");
+
+				Unidad unidad = new Unidad(nomt.getText(), razat.getText(), dest.getText(),
+						Integer.parseInt(atkFist.getText()), Integer.parseInt(atkMagt.getText()),
+						Integer.parseInt(vidat.getText()), Integer.parseInt(defFist.getText()),
+						Integer.parseInt(defMagt.getText()));
+
+				try {
+					// System.out.println(i);
+					int a = i + 1;
+					miDB.guardarUnidad(unidad, a);
+
+					JOptionPane.showMessageDialog(null, "Enemigo creado con exito");
+					logger.log(Level.INFO, "Enemigo creado");
+				} catch (Exception e2) {
+				}
+			}
+		});
+		// listener del boton de volver
+		volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaAdmin admin = new VentanaAdmin(v.loginWindow);
+				admin.setVisible(true);
+				window.dispose();
+				try {
+					miDB.desconectar();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
 	}
 
 }

@@ -1,6 +1,8 @@
 package ui.user;
 
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -56,6 +58,7 @@ public class VentanaCombate extends JFrame {
 		fondo = new JLabel();
 		panelFondo.setLayout(null);
 		panel1.setBounds(0, 0, 494, 271);
+		panel1.setBackground(new Color(0,0,0,0));
 		panelFondo.add(panel1);
 		getContentPane().add(panelFondo);
 		panel1.setLayout(new MigLayout("", "[83.00px][][123px][][]", "[23px][][][][][][][50.00][][]"));
@@ -73,7 +76,7 @@ public class VentanaCombate extends JFrame {
 		vidaAli.setForeground(Color.BLACK);
 		panel1.add(vidaAli, "cell 1 6");
 		//JLabel con la vida del aliado
-		vidaAliado.setBackground(Color.WHITE);
+		vidaAliado.setBackground(new Color(0,0,0,0));
 		vidaAliado.setForeground(Color.BLACK);
 		vidaAliado.setText("" + (aliado.getVida() + aliado.getCasco().getBuffVida() + aliado.getPechera().getBuffVida()));
 		panel1.add(vidaAliado, "cell 2 6,alignx left,aligny center");
@@ -81,7 +84,7 @@ public class VentanaCombate extends JFrame {
 		vidaUni.setForeground(Color.BLACK);
 		panel1.add(vidaUni, "cell 3 6");
 		//JLabel con la vida del enemigo
-		vidaUnidad.setBackground(Color.WHITE);
+		vidaUnidad.setBackground(new Color(0,0,0,0));
 		vidaUnidad.setForeground(Color.BLACK);
 		vidaUnidad.setText("" + unidad.getVida());
 		vidaUnidad.setBackground(new Color(0, 0, 0, 0));
@@ -201,8 +204,8 @@ public class VentanaCombate extends JFrame {
 
 				} else if (unidad.getRaza().contentEquals("nigromante")) {
 					daño = unidad.ataque2(unidad.getAtkMag());
-					dañoTotal = daño - (aliado.getDefFis() + aliado.getCasco().getBuffDefFis()
-							+ aliado.getPechera().getBuffDefFis());
+					dañoTotal = daño -  - (aliado.getDefMag() + aliado.getCasco().getBuffDefMag()
+							+ aliado.getPechera().getBuffDefMag());
 					if (dañoTotal >= 0) {
 						vidaTemporal = vidaTemporal - (dañoTotal);
 						JOptionPane.showMessageDialog(null,
@@ -239,10 +242,9 @@ public class VentanaCombate extends JFrame {
 						JOptionPane.showMessageDialog(null, unidad.getNom() + " te ha hecho: 0 puntos de daño");
 					}
 				} else if (unidad.getRaza().contentEquals("nigromante")) {
-					daño = unidad.ataque1(unidad.getAtkMag()) - (aliado.getDefMag() + aliado.getCasco().getBuffDefMag()
+					daño = unidad.ataque1(unidad.getAtkMag());
+					dañoTotal = daño -  - (aliado.getDefMag() + aliado.getCasco().getBuffDefMag()
 							+ aliado.getPechera().getBuffDefMag());
-					dañoTotal = daño - (aliado.getDefFis() + aliado.getCasco().getBuffDefFis()
-							+ aliado.getPechera().getBuffDefFis());
 					if (dañoTotal >= 0) {
 						vidaTemporal = vidaTemporal - (dañoTotal);
 						JOptionPane.showMessageDialog(null,

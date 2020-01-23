@@ -58,7 +58,6 @@ public class VentanaCombate extends JFrame {
 		fondo = new JLabel();
 		panelFondo.setLayout(null);
 		panel1.setBounds(0, 0, 494, 271);
-		panel1.setBackground(new Color(0,0,0,0));
 		panelFondo.add(panel1);
 		getContentPane().add(panelFondo);
 		panel1.setLayout(new MigLayout("", "[83.00px][][123px][][]", "[23px][][][][][][][50.00][][]"));
@@ -76,7 +75,6 @@ public class VentanaCombate extends JFrame {
 		vidaAli.setForeground(Color.BLACK);
 		panel1.add(vidaAli, "cell 1 6");
 		//JLabel con la vida del aliado
-		vidaAliado.setBackground(new Color(0,0,0,0));
 		vidaAliado.setForeground(Color.BLACK);
 		vidaAliado.setText("" + (aliado.getVida() + aliado.getCasco().getBuffVida() + aliado.getPechera().getBuffVida()));
 		panel1.add(vidaAliado, "cell 2 6,alignx left,aligny center");
@@ -84,10 +82,8 @@ public class VentanaCombate extends JFrame {
 		vidaUni.setForeground(Color.BLACK);
 		panel1.add(vidaUni, "cell 3 6");
 		//JLabel con la vida del enemigo
-		vidaUnidad.setBackground(new Color(0,0,0,0));
 		vidaUnidad.setForeground(Color.BLACK);
 		vidaUnidad.setText("" + unidad.getVida());
-		vidaUnidad.setBackground(new Color(0, 0, 0, 0));
 		panel1.add(vidaUnidad, "cell 4 6,alignx left,aligny center");
 		//botones de ataque del jugador
 		panel1.add(ataquePrincipal, "cell 2 8");

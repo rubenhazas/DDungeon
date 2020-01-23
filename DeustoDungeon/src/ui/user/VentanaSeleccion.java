@@ -38,7 +38,6 @@ public class VentanaSeleccion extends JFrame {
 	public JPanel panel1 = new JPanel();
 	public JButton volver = new JButton("Volver");
 	public JLabel nombre = new JLabel("Nombre");
-	public JButton buscarPersonaje = new JButton("Seleccionar personaje");
 	public JButton pelear = new JButton("Pelear");
 	public JList<String> listaPersonajes;
 	public DefaultListModel<String> listModel = new DefaultListModel<String>();
@@ -87,8 +86,6 @@ public class VentanaSeleccion extends JFrame {
 		//JList con los personajes
 		listaPersonajes = new JList<String>(listModel);
 		panel1.add(listaPersonajes, "cell 1 2,grow");
-		//JButton para buscar el personaje
-		panel1.add(buscarPersonaje, "cell 0 4");
 		//JButton para comenzar la pelea
 		panel1.add(pelear, "cell 2 4");
 
@@ -97,12 +94,11 @@ public class VentanaSeleccion extends JFrame {
 		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoSeleccion.png")));
 		fondo.setBounds(-3, 0, 397, 331);
 		panelFondo.add(fondo);
-		//listener para el boton de seleccionar personaje
-		buscarPersonaje.addActionListener(new ActionListener() {
-			
+		//listener para el boton de pelear
+		pelear.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				try {
 					a = miDB.obtenerAliado(listModel.get(listaPersonajes.getSelectedIndex()));
 					
@@ -117,13 +113,6 @@ public class VentanaSeleccion extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-			}
-		});
-		//listener para el boton de pelear
-		pelear.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Comenzando el combate");
 				logger.log(Level.INFO, "Seleccionando enemigo");
 				try {

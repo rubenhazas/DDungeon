@@ -58,12 +58,12 @@ public class VentanaRegistro extends JFrame {
 		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoMenu.png")));
 		fondo.setBounds(0, 0, 444, 146);
 		getContentPane().add(fondo);
-		
+
 		JButton registrar = new JButton();
 		registrar.setText("Registrar");
 		registrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					try {
+				try {
 					login.miDB.guardarUser(new User(textFieldNombre.getText(), textFieldPassword.getText(), 0));
 					logger.log(Level.INFO, "Usuario registrado");
 					window.dispose();

@@ -1,14 +1,11 @@
 package ui.main;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +31,7 @@ public class VentanaMenu extends JFrame {
 	 * Launch the application.
 	 */
 	private VentanaMenu window = this;
-	
+
 	public JButton crearPersonajes = new JButton("Crear Personaje");
 	public JButton seleccionarPersonaje = new JButton("Seleccionar Personaje");
 	public JLabel titulo = new JLabel("DeustoDungeon");
@@ -42,6 +39,7 @@ public class VentanaMenu extends JFrame {
 	private Logger logger = Logger.getLogger(VentanaMenu.class.getName());
 	public VentanaLogin ventanaLogin;
 	public GestorDB miDB;
+
 	/**
 	 * Create the application.
 	 */

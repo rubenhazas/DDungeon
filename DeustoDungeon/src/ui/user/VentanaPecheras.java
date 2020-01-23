@@ -23,6 +23,7 @@ public class VentanaPecheras extends JFrame {
 	public JLabel fondo;
 	public GestorDB miDB;
 	private Logger logger = Logger.getLogger(VentanaPecheras.class.getName());
+
 	public VentanaPecheras(VentanaMenu m) {
 		try {
 			miDB = new GestorDB();

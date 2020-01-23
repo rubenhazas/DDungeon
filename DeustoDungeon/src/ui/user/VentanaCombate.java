@@ -61,39 +61,40 @@ public class VentanaCombate extends JFrame {
 		panelFondo.add(panel1);
 		getContentPane().add(panelFondo);
 		panel1.setLayout(new MigLayout("", "[83.00px][][123px][][]", "[23px][][][][][][][50.00][][]"));
-		//boton para volver a la ventana anterior
+		// boton para volver a la ventana anterior
 		panel1.add(volver, "cell 0 1,alignx center");
-		//JLabel del nombre del aliado
+		// JLabel del nombre del aliado
 		nombreAliado.setForeground(Color.BLACK);
 		nombreAliado.setText(aliado.getNom());
 		panel1.add(nombreAliado, "cell 2 5");
-		//JLabel del nombre del enemigo
+		// JLabel del nombre del enemigo
 		nombreUnidad.setForeground(Color.BLACK);
 		nombreUnidad.setText(unidad.getNom() + " el " + unidad.getRaza());
 		panel1.add(nombreUnidad, "cell 4 5");
-		//JLabel de la vida del aliado
+		// JLabel de la vida del aliado
 		vidaAli.setForeground(Color.BLACK);
 		panel1.add(vidaAli, "cell 1 6");
-		//JLabel con la vida del aliado
+		// JLabel con la vida del aliado
 		vidaAliado.setForeground(Color.BLACK);
-		vidaAliado.setText("" + (aliado.getVida() + aliado.getCasco().getBuffVida() + aliado.getPechera().getBuffVida()));
+		vidaAliado
+				.setText("" + (aliado.getVida() + aliado.getCasco().getBuffVida() + aliado.getPechera().getBuffVida()));
 		panel1.add(vidaAliado, "cell 2 6,alignx left,aligny center");
-		//JLabel de la vida del enemigo
+		// JLabel de la vida del enemigo
 		vidaUni.setForeground(Color.BLACK);
 		panel1.add(vidaUni, "cell 3 6");
-		//JLabel con la vida del enemigo
+		// JLabel con la vida del enemigo
 		vidaUnidad.setForeground(Color.BLACK);
 		vidaUnidad.setText("" + unidad.getVida());
 		panel1.add(vidaUnidad, "cell 4 6,alignx left,aligny center");
-		//botones de ataque del jugador
+		// botones de ataque del jugador
 		panel1.add(ataquePrincipal, "cell 2 8");
 		panel1.add(ataqueSecundario, "cell 4 8");
-		//action listener del ataque secundario del jugador
+		// action listener del ataque secundario del jugador
 		ataqueSecundario.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//calculo del daño que hace el ataque secundario del jugador
+				// calculo del daño que hace el ataque secundario del jugador
 				int dañoExtra = 0;
 				int daño = 0;
 				int dañoTotal = 0;
@@ -130,12 +131,12 @@ public class VentanaCombate extends JFrame {
 			}
 
 		});
-		//listener del ataque principal del jugador
+		// listener del ataque principal del jugador
 		ataquePrincipal.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//calculo del daño que hace el ataque principal del jugador
+				// calculo del daño que hace el ataque principal del jugador
 				int dañoExtra = 0;
 				int daño = 0;
 				int vidaTemporal = Integer.parseInt(vidaUnidad.getText());
@@ -182,7 +183,7 @@ public class VentanaCombate extends JFrame {
 
 		public void run() {
 			if (turnosUnidad == 3) {
-				//calculo del daño que hace el ataque secyndario del enemigo
+				// calculo del daño que hace el ataque secyndario del enemigo
 				int daño = 0;
 				int vidaTemporal = Integer.parseInt(vidaAliado.getText());
 				int dañoTotal = 0;
@@ -200,7 +201,7 @@ public class VentanaCombate extends JFrame {
 
 				} else if (unidad.getRaza().contentEquals("nigromante")) {
 					daño = unidad.ataque2(unidad.getAtkMag());
-					dañoTotal = daño -  - (aliado.getDefMag() + aliado.getCasco().getBuffDefMag()
+					dañoTotal = daño - -(aliado.getDefMag() + aliado.getCasco().getBuffDefMag()
 							+ aliado.getPechera().getBuffDefMag());
 					if (dañoTotal >= 0) {
 						vidaTemporal = vidaTemporal - (dañoTotal);
@@ -221,7 +222,7 @@ public class VentanaCombate extends JFrame {
 					turnosUnidad = 0;
 				}
 			} else {
-				//calculo del daño que hace el ataque principal del enemigo
+				// calculo del daño que hace el ataque principal del enemigo
 				int daño = 0;
 				int vidaTemporal = Integer.parseInt(vidaAliado.getText());
 				int dañoTotal = 0;
@@ -239,7 +240,7 @@ public class VentanaCombate extends JFrame {
 					}
 				} else if (unidad.getRaza().contentEquals("nigromante")) {
 					daño = unidad.ataque1(unidad.getAtkMag());
-					dañoTotal = daño -  - (aliado.getDefMag() + aliado.getCasco().getBuffDefMag()
+					dañoTotal = daño - -(aliado.getDefMag() + aliado.getCasco().getBuffDefMag()
 							+ aliado.getPechera().getBuffDefMag());
 					if (dañoTotal >= 0) {
 						vidaTemporal = vidaTemporal - (dañoTotal);

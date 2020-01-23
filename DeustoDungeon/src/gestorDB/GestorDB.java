@@ -62,11 +62,12 @@ public class GestorDB {
 		logger.log(Level.INFO, "Aliado guardado");
 
 	}
+
 	/*
 	 * Metodo para guardar enemigos en la BD
 	 */
 	public void guardarUnidad(Unidad unidad, int i) throws SQLException {
-		
+
 		String sql = "INSERT INTO unidad (numero, nombre, descripcion, atkFis, atkMag, vida, defFis, defMag, raza) VALUES (?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, i);
@@ -82,6 +83,7 @@ public class GestorDB {
 
 		logger.log(Level.INFO, "Enemigo guardado");
 	}
+
 	/*
 	 * Metodo para rellenar el JList de aliados en la ventana de seleccion de
 	 * personaje
@@ -99,33 +101,35 @@ public class GestorDB {
 		logger.log(Level.INFO, "Obteniendo aliados");
 		return nombres;
 	}
+
 	/*
 	 * Metodo para eliminar personajes
 	 */
 	public void eliminarAliado(String nombre) throws SQLException {
 		String sql = "DELETE FROM aliado WHERE nombre = ?";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		
+
 		stmt.setString(1, nombre);
-		
+
 		stmt.executeUpdate();
 		logger.log(Level.INFO, "Personaje eliminado");
 	}
+
 	/*
 	 * Metodo para eliminar enemigos
 	 */
 	public void eliminarUnidad(String nombre) throws SQLException {
 		String sql = "DELETE FROM unidad WHERE nombre = ?";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		
+
 		stmt.setString(1, nombre);
-		
+
 		stmt.executeUpdate();
 		logger.log(Level.INFO, "Enemigo eliminado");
 	}
-	
+
 	/*
 	 * Metodo para rellenar el JList de enemigos en la ventana de admin
 	 */
@@ -142,7 +146,7 @@ public class GestorDB {
 		logger.log(Level.INFO, "Obteniendo enemigos");
 		return nombres;
 	}
-	
+
 	/*
 	 * Metodo para rellenar el JList de armas de la ventana que muestra las armas de
 	 * la BD
@@ -410,44 +414,45 @@ public class GestorDB {
 
 		stmt.setString(1, user.getUser());
 		stmt.setString(2, user.getPass());
-		stmt.setInt(3,user.isAdmin());
+		stmt.setInt(3, user.isAdmin());
 		stmt.executeUpdate();
 		logger.log(Level.INFO, "Usuario guardado");
 
 	}
+
 	/*
 	 * Metodo para comprobar usuarios de la BD
 	 */
-	public int comprobarUser(String user,String pass) throws SQLException{
-		User u =new User();
-		
+	public int comprobarUser(String user, String pass) throws SQLException {
+		User u = new User();
+
 		String sql = "SELECT nombre, password, admin FROM users WHERE nombre = ?";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		
+
 		try {
 			stmt.setString(1, user);
-			
+
 			ResultSet rs = stmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				u.setUser(rs.getString("nombre"));
 				u.setPass(rs.getString("password"));
 				u.setAdmin(rs.getInt("admin"));
-			}else {
+			} else {
 				logger.log(Level.INFO, "Usuario no encontrado");
 				return 0;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		if(u.isAdmin()==1) {
+
+		if (u.isAdmin() == 1) {
 			logger.log(Level.INFO, "Usuario administrador encontrado");
 			return 2;
-		}else {
+		} else {
 			logger.log(Level.INFO, "Usuario encontrado");
 			return 1;
 		}
-	
+
 	}
 }

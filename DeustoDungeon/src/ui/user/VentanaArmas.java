@@ -30,17 +30,17 @@ public class VentanaArmas extends JFrame {
 		try {
 			miDB = new GestorDB();
 			miDB.conectar();
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 300, 400, 300);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		menu = m;
-		//listModel donde metemos las armas
+		// listModel donde metemos las armas
 		listModel = new DefaultListModel<String>();
 
 		try {
@@ -50,7 +50,7 @@ public class VentanaArmas extends JFrame {
 		} catch (Exception e) {
 		}
 		panel.setLayout(null);
-		//JList con las armas
+		// JList con las armas
 		listaArmas = new JList<String>(listModel);
 		listaArmas.setBounds(10, 11, 180, 249);
 		panel.add(listaArmas);

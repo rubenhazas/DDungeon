@@ -71,6 +71,7 @@ public class VentanaAdmin extends JFrame {
 				try {
 					logger.log(Level.INFO, "Intentando eliminar un personaje");
 					miDB.eliminarAliado(listModel.get(listPersonajes.getSelectedIndex()));
+					listModel.clear();
 					listModel.addAll(miDB.obtenerAliados());
 				} catch (Exception e2) {
 				}
@@ -94,6 +95,7 @@ public class VentanaAdmin extends JFrame {
 				try {
 					logger.log(Level.INFO, "Intentando eliminar un enemigo");
 					miDB.eliminarUnidad(listModelEnemigos.get(listEnemigos.getSelectedIndex()));
+					listModelEnemigos.clear();
 					listModelEnemigos.addAll(miDB.obtenerEnemigos());
 				} catch (Exception e2) {
 				}

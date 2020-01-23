@@ -44,6 +44,7 @@ public class VentanaSeleccion extends JFrame {
 	public JLabel fondo;
 	public GestorDB miDB;
 	private Logger logger = Logger.getLogger(VentanaSeleccion.class.getName());
+
 	public VentanaSeleccion(VentanaMenu v) {
 		try {
 			miDB = new GestorDB();
@@ -60,17 +61,17 @@ public class VentanaSeleccion extends JFrame {
 		panel1.setBounds(-3, 5, 401, 313);
 		panel1.setLayout(new MigLayout("", "[122.00][136.00][75.00][]", "[][][210.00][13.00][]"));
 		getContentPane().add(panelFondo);
-		
-		//ListModel en el que vamos a meter los personajes
+
+		// ListModel en el que vamos a meter los personajes
 		listModel = new DefaultListModel<String>();
-		
+
 		try {
 			logger.log(Level.INFO, "Buscando personajes para el JList");
 			listModel.addAll(miDB.obtenerAliados());
 		} catch (Exception e) {
 		}
 		panel1.add(volver, "cell 0 0,alignx left,aligny center");
-		//listener para el boton de volver
+		// listener para el boton de volver
 		volver.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -80,28 +81,28 @@ public class VentanaSeleccion extends JFrame {
 			}
 		});
 		panelFondo.setLayout(null);
-		//JLabel nombre
+		// JLabel nombre
 		nombre.setForeground(Color.WHITE);
 		panel1.add(nombre, "cell 1 1");
-		//JList con los personajes
+		// JList con los personajes
 		listaPersonajes = new JList<String>(listModel);
 		panel1.add(listaPersonajes, "cell 1 2,grow");
-		//JButton para comenzar la pelea
+		// JButton para comenzar la pelea
 		panel1.add(pelear, "cell 2 4");
 
 		panelFondo.add(panel1);
-		//Imagen de fondo de la ventana
+		// Imagen de fondo de la ventana
 		fondo = new JLabel(new ImageIcon(getClass().getResource("/resources/fondoSeleccion.png")));
 		fondo.setBounds(-3, 0, 397, 331);
 		panelFondo.add(fondo);
-		//listener para el boton de pelear
+		// listener para el boton de pelear
 		pelear.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					a = miDB.obtenerAliado(listModel.get(listaPersonajes.getSelectedIndex()));
-					
+
 					logger.log(Level.INFO, "Seleccionando el personaje");
 					if (a != null) {
 						logger.log(Level.INFO, "Personaje seleccionado con exito");

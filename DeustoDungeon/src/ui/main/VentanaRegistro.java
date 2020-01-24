@@ -64,8 +64,8 @@ public class VentanaRegistro extends JFrame {
 		registrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					login.miDB.guardarUser(new User(textFieldNombre.getText(), textFieldPassword.getText(), 0));
 					logger.log(Level.INFO, "Intentando registrar usuario");
+					login.miDB.guardarUser(new User(textFieldNombre.getText(), textFieldPassword.getText(), 0));
 					window.dispose();
 				} catch (Exception e2) {
 				}

@@ -411,8 +411,8 @@ public class GestorDB {
 		String sql = ("INSERT INTO users (nombre, password, admin) VALUES (?,?,?)");
 
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		
-		if(existeUser(user)== true) {
+		User usuario = getUser(user);
+		if(user.getUser().equals(usuario.getUser())) {
 			logger.log(Level.INFO, "El usuario ya existe");
 		}else {
 			stmt.setString(1, user.getUser());
@@ -422,27 +422,20 @@ public class GestorDB {
 			logger.log(Level.INFO, "Usuario guardado");
 		}
 	}
-	public boolean existeUser(User u) throws SQLException {
-		List<String> nombres = new ArrayList<String>();
-		String sql = "SELECT nombre FROM users";
-		boolean existe = false;
-		PreparedStatement stmt = conn.prepareStatement(sql);
+	public User getUser(User u) throws SQLException {
+		User user = new User();
+		String sql = "SELECT nombre, password, admin FROM users WHERE nombre= ?";
 		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, u.getUser());
 		ResultSet rs = stmt.executeQuery();
 		
 		if(rs.next()) {
-			nombres.add(rs.getString("nombre"));
+			user.setUser(rs.getString("nombre"));
+			user.setPass(rs.getString("password"));
+			user.setAdmin(rs.getInt("admin"));
 		}
-		for(int i=0; i<nombres.size();i++) {
-			if(u.getUser() == nombres.get(i)) {
-				existe = true;
-			}
-		}
-		if(existe == true) {
-			return true;
-		}else {
-			return false;
-		}
+		return user;
 		}
 	
 		

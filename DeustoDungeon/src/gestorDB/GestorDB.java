@@ -411,15 +411,42 @@ public class GestorDB {
 		String sql = ("INSERT INTO users (nombre, password, admin) VALUES (?,?,?)");
 
 		PreparedStatement stmt = conn.prepareStatement(sql);
-
-		stmt.setString(1, user.getUser());
-		stmt.setString(2, user.getPass());
-		stmt.setInt(3, user.isAdmin());
-		stmt.executeUpdate();
-		logger.log(Level.INFO, "Usuario guardado");
-
+		
+		if(existeUser(user)== true) {
+			logger.log(Level.INFO, "El usuario ya existe");
+		}else {
+			stmt.setString(1, user.getUser());
+			stmt.setString(2, user.getPass());
+			stmt.setInt(3, user.isAdmin());
+			stmt.executeUpdate();
+			logger.log(Level.INFO, "Usuario guardado");
+		}
 	}
-
+	public boolean existeUser(User u) throws SQLException {
+		List<String> nombres = new ArrayList<String>();
+		String sql = "SELECT nombre FROM users";
+		boolean existe = false;
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			nombres.add(rs.getString("nombre"));
+		}
+		for(int i=0; i<nombres.size();i++) {
+			if(u.getUser() == nombres.get(i)) {
+				existe = true;
+			}
+		}
+		if(existe == true) {
+			return true;
+		}else {
+			return false;
+		}
+		}
+	
+		
+	
 	/*
 	 * Metodo para comprobar usuarios de la BD
 	 */

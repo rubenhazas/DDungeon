@@ -10,7 +10,6 @@ import javax.swing.*;
 
 import gestorDB.GestorDB;
 import net.miginfocom.swing.MigLayout;
-import ui.main.VentanaMenu;
 import unidades.Unidad;
 
 public class VentanaPersonaje extends JFrame {

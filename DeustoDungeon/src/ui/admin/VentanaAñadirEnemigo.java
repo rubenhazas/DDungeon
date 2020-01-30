@@ -51,6 +51,7 @@ public class VentanaAñadirEnemigo extends JFrame {
 	private Logger logger = Logger.getLogger(VentanaAñadirEnemigo.class.getName());
 
 	public VentanaAñadirEnemigo(VentanaAdmin v, int i) {
+		logger.log(Level.INFO, "Creando ventana de añadir enemigo");
 		ventanaAdmin = v;
 		try {
 			miDB = new GestorDB();

@@ -36,6 +36,7 @@ public class VentanaAdmin extends JFrame {
 	public JLabel fondo;
 
 	public VentanaAdmin(VentanaLogin login) {
+		logger.log(Level.INFO, "Creando ventana de admin");
 		try {
 			miDB = new GestorDB();
 			miDB.conectar();

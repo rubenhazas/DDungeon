@@ -1,4 +1,4 @@
-package ui.main;
+package ui.user;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,8 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import gestorDB.GestorDB;
-import ui.user.VentanaPersonaje;
-import ui.user.VentanaSeleccion;
+import ui.main.VentanaLogin;
 
 import java.awt.Font;
 
@@ -51,7 +50,7 @@ public class VentanaMenu extends JFrame {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		logger.log(Level.INFO, "Creando la ventana");
+		logger.log(Level.INFO, "Creando la ventana de menu");
 		window.setBounds(500, 300, 450, 175);
 		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		window.setResizable(false);

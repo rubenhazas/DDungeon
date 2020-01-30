@@ -11,7 +11,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import gestorDB.GestorDB;
-import ui.main.VentanaMenu;
 
 public class VentanaArmas extends JFrame {
 

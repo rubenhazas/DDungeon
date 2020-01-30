@@ -11,7 +11,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import gestorDB.GestorDB;
-import ui.main.VentanaMenu;
 
 public class VentanaPecheras extends JFrame {
 	private static final long serialVersionUID = 1L;

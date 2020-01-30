@@ -12,6 +12,7 @@ import gestorDB.GestorDB;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import ui.admin.VentanaAdmin;
+import ui.user.VentanaMenu;
 import usuario.User;
 
 import javax.swing.JLabel;

@@ -29,7 +29,7 @@ public class gestorDBTest {
 	}
 
 	@Test
-	public void testGuardarUnidad() throws SQLException{
+	public void testGuardarUnidad() throws SQLException {
 		Unidad u = new Unidad();
 		u.setNom("prueba");
 		u.setDescripcion("prueba");
@@ -39,13 +39,14 @@ public class gestorDBTest {
 		u.setDefFis(1);
 		u.setDefMag(1);
 		u.setRaza("orco");
-		
+
 		db.guardarUnidad(u, 10);
-		
+
 		assertEquals(u.getNom(), db.obtenerUnidad(10).getNom());
 	}
+
 	@Test
-	public void testGuardarAliado() throws SQLException{
+	public void testGuardarAliado() throws SQLException {
 		Unidad u = new Unidad();
 		u.setNom("prueba");
 		u.setDescripcion("prueba");
@@ -56,19 +57,21 @@ public class gestorDBTest {
 		u.setDefMag(1);
 		u.setRaza("humano");
 		db.guardarAliado(u, "Katana", "espada", "Casco de hierro", "Pechera de hierro");
-		
-		assertEquals(u.getNom(),db.obtenerAliado("prueba").getNom());
+
+		assertEquals(u.getNom(), db.obtenerAliado("prueba").getNom());
 	}
-	
+
 	@Test
-	public void testBorrarUnidad() throws SQLException{
+	public void testBorrarUnidad() throws SQLException {
 		db.eliminarUnidad("prueba");
-		
+
 	}
-	@Test 
-	public void testBorrarAliado() throws SQLException{
+
+	@Test
+	public void testBorrarAliado() throws SQLException {
 		db.eliminarAliado("prueba");
 	}
+
 	@Test
 	public void testGuardarArmadura() throws SQLException {
 		Armadura armadura = new Armadura();
@@ -78,17 +81,18 @@ public class gestorDBTest {
 		armadura.setBuffDefFis(1);
 		armadura.setBuffDefMag(1);
 		db.guardarArmadura(armadura, "casco");
-		
-		assertEquals(armadura.getNom(),db.obtenerCasco("prueba").getNom());
+
+		assertEquals(armadura.getNom(), db.obtenerCasco("prueba").getNom());
 	}
+
 	@Test
-	public void testGuardarUser() throws SQLException{
+	public void testGuardarUser() throws SQLException {
 		User usuario = new User();
 		usuario.setUser("prueba");
 		usuario.setPass("prueba");
 		usuario.setAdmin(0);
-		
+
 		assertEquals(1, db.comprobarUser(usuario.getUser(), usuario.getPass()));
 	}
-	
+
 }

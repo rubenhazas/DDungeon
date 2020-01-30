@@ -412,9 +412,9 @@ public class GestorDB {
 
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		User usuario = getUser(user);
-		if(user.getUser().equals(usuario.getUser())) {
+		if (user.getUser().equals(usuario.getUser())) {
 			logger.log(Level.INFO, "El usuario ya existe");
-		}else {
+		} else {
 			stmt.setString(1, user.getUser());
 			stmt.setString(2, user.getPass());
 			stmt.setInt(3, user.isAdmin());
@@ -422,24 +422,26 @@ public class GestorDB {
 			logger.log(Level.INFO, "Usuario guardado");
 		}
 	}
+
+	/*
+	 * Metodo para sacar un usuario de la base de datos
+	 */
 	public User getUser(User u) throws SQLException {
 		User user = new User();
 		String sql = "SELECT nombre, password, admin FROM users WHERE nombre= ?";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, u.getUser());
 		ResultSet rs = stmt.executeQuery();
-		
-		if(rs.next()) {
+
+		if (rs.next()) {
 			user.setUser(rs.getString("nombre"));
 			user.setPass(rs.getString("password"));
 			user.setAdmin(rs.getInt("admin"));
 		}
 		return user;
-		}
-	
-		
-	
+	}
+
 	/*
 	 * Metodo para comprobar usuarios de la BD
 	 */

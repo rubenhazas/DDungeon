@@ -71,10 +71,8 @@ public class Arma implements Atacante {
 		if (probabilidad <= 90) {
 			daño = (int) (Math.random() * ((i - 1) + 1)) + 1;
 		}
-
 		return daño;
 	}
-
 	/*
 	 * Metodo de ataque 2
 	 */
@@ -82,9 +80,9 @@ public class Arma implements Atacante {
 	public int ataque2(int i) {
 		int daño = 0;
 		int probabilidad = (int) (Math.random() * ((100 - 1) + 1)) + 1;
+		System.out.println(probabilidad);
 		if (probabilidad <= 50) {
 			daño = (int) ((Math.random() * ((i - 1) + 1)) + 1) * 2;
-
 		}
 		return daño;
 	}

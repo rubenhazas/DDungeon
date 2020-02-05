@@ -143,12 +143,12 @@ public class VentanaCombate extends JFrame {
 				if (aliado.getArma().getTipo().contentEquals("espada")
 						|| aliado.getArma().getTipo().contentEquals("arco")) {
 					dañoExtra = aliado.getAtkFis();
-					daño = (dañoExtra + aliado.ataque1(aliado.getArma().getBuffAtkFis()));
+					daño = (dañoExtra + aliado.getArma().ataque1(aliado.getArma().getBuffAtkFis()));
 					dañoTotal = daño - unidad.getDefFis();
 					vidaTemporal = vidaTemporal - (dañoTotal);
 				} else if (aliado.getArma().getTipo().contentEquals("baston")) {
 					dañoExtra = aliado.getAtkMag();
-					daño = (dañoExtra + aliado.ataque1(aliado.getArma().getBuffAtkMag()));
+					daño = (dañoExtra + aliado.getArma().ataque1(aliado.getArma().getBuffAtkMag()));
 					dañoTotal = daño - unidad.getDefMag();
 					vidaTemporal = vidaTemporal - (dañoTotal);
 				}
